@@ -7,10 +7,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import vampire.com.androidprojectb.nettool.NetTool;
+
 
 public abstract class BaseActivity extends AppCompatActivity {
     private static final String TAG = "Vampire_BaseActivity";
     protected View rootView;
+    public NetTool mNetTool;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

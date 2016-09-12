@@ -7,7 +7,7 @@ import android.view.MotionEvent;
  */
 public class UrlValues {
     //每六小时自动更新，随机返回
-    
+
     // APIkey
     public static final String API_KEY = "35fe329001b3e54bfd917517f52fcbe0";
 
