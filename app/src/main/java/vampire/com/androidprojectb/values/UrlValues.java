@@ -7,28 +7,40 @@ import android.view.MotionEvent;
  */
 public class UrlValues {
     //每六小时自动更新，随机返回
+
     // APIkey
     public static final String API_KEY = "35fe329001b3e54bfd917517f52fcbe0";
+
     // 返回文章数
     public static final String NUM = "?num=";
+
     // 文章分页
     public static final String SOCIAL_PAGE = "&page=";
+
     // 是否随机
     public static final String RAND = "&rand=";
+
     // 搜索关键字
     public static final String WORD = "&word=";
+
     // 指定来源
     public static final String SRC = "&src=";
+
     // 自己的星座(去除出'座')
     public static final String ME = "?me=";
+
     // 对象的星座(去除'座')
     public static final String HE = "&he=";
+
     // 对象为所有星座时
     public static final String all = "1";
+
     // 用于周公解梦的搜索关键字
     public static final String DREAM_WORD = "?word=";
+
     // 月份
     public static final String MOUTH = "?m=";
+
     // 日期
     public static final String DAY = "&d=";
 
