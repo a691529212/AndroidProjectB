@@ -40,7 +40,7 @@ import okhttp3.Response;
  * 　　　　　　　　　┗┓┓┏━┳┓┏┛ + + + +
  * 　　　　　　　　　　┃┫┫　┃┫┫
  * 　　　　　　　　　　┗┻┛　┗┻┛+ + + +
- * <p>
+ * <p/>
  * Created by R on 16/9/12.
  */
 
@@ -50,6 +50,7 @@ public class OkHttpUtil implements NetInterface {
     private Handler mHandler =
             new Handler(Looper.getMainLooper());
     private Gson mGson;
+
     public OkHttpUtil() {
         super();
         mGson = new Gson();
@@ -66,13 +67,13 @@ public class OkHttpUtil implements NetInterface {
     }
 
 
-
     @Override
     public <T> void startRequest(String url, final Class<T> tClass, final OnHttpCallBack<T> callBack) {
         Request request = new Request
                 .Builder().url(url)
-                .addHeader("apikey","35fe329001b3e54bfd917517f52fcbe0")
+                .addHeader("apikey", "35fe329001b3e54bfd917517f52fcbe0")
                 .build();
+        Log.d("OkHttpUtil", url);
         mClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, final IOException e) {
@@ -88,7 +89,9 @@ public class OkHttpUtil implements NetInterface {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String str = response.body().string();
-                final T result = mGson.fromJson(str,tClass);
+
+
+                final T result = mGson.fromJson(str, tClass);
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {

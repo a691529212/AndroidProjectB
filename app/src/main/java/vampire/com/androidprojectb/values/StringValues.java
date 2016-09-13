@@ -5,7 +5,7 @@ package vampire.com.androidprojectb.values;
  */
 public class StringValues {
     public static final String[] TITLE = {
-            "热门精选","社会新闻","体育","科技新闻","国际新闻"
+            "热门精选","体育","科技新闻","国际新闻"
             ,"奇闻趣事","娱乐花边","苹果新闻","生活健康"
     };
 }
