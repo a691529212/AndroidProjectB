@@ -45,10 +45,10 @@ public class NewsReuseListViewAdapter extends BaseAdapter {
     private Context context;
     private NewsReuseBean bean;
 
-//    public NewsReuseListViewAdapter(Context context) {
-//        this.context= context;
-//
-//    }
+    public NewsReuseListViewAdapter(Context context) {
+        this.context= context;
+
+    }
 
     @Override
     public int getCount() {
@@ -69,7 +69,7 @@ public class NewsReuseListViewAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         NewsReuseHolder newsReuseHolder = null;
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.item_news_reuse_list_view, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_news_reuse_list_view, null);
             newsReuseHolder = new NewsReuseHolder(convertView);
             convertView.setTag(newsReuseHolder);
         } else {
