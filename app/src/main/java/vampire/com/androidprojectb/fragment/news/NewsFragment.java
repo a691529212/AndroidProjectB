@@ -1,11 +1,15 @@
 package vampire.com.androidprojectb.fragment.news;
 
+import vampire.com.androidprojectb.fragment.news.adapter.NewsAdapter;
+
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 
 import vampire.com.androidprojectb.R;
 import vampire.com.androidprojectb.base.BaseFragment;
 import vampire.com.androidprojectb.fragment.news.adapter.NewsAdapter;
+import vampire.com.androidprojectb.R;
+import vampire.com.androidprojectb.base.BaseFragment;
 
 /**
  * Created by Vampire on 16/9/12.
@@ -35,5 +39,6 @@ public class NewsFragment extends BaseFragment{
         newsAdapter= new NewsAdapter(getChildFragmentManager());
         mNewsViewPager.setAdapter(newsAdapter);
         mNewsTabLayout.setupWithViewPager(mNewsViewPager);
+
     }
 }
