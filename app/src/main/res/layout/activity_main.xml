@@ -23,6 +23,7 @@
             android:layout_weight="1"
             android:drawableTop="@drawable/select_news"
             android:text="新闻"
+            android:textColor="@drawable/textselectcolor"
             android:gravity="center"
             android:button="@null" />
         <RadioButton
@@ -32,6 +33,7 @@
             android:layout_weight="1"
             android:drawableTop="@drawable/select_recreation"
             android:text="娱乐"
+            android:textColor="@drawable/textselectcolor"
             android:gravity="center"
             android:button="@null" />
         <RadioButton
@@ -39,6 +41,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:textColor="@drawable/textselectcolor"
             android:drawableTop="@drawable/select_topic"
             android:text="话题"
             android:gravity="center"
@@ -48,6 +51,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:textColor="@drawable/textselectcolor"
             android:drawableTop="@drawable/select_user"
             android:text="我"
             android:gravity="center"
