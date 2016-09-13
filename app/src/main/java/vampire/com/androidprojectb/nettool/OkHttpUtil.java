@@ -70,7 +70,9 @@ public class OkHttpUtil implements NetInterface {
     @Override
     public <T> void startRequest(String url, final Class<T> tClass, final OnHttpCallBack<T> callBack) {
         Request request = new Request
-                .Builder().url(url).build();
+                .Builder().url(url)
+                .addHeader("apikey","35fe329001b3e54bfd917517f52fcbe0")
+                .build();
         mClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, final IOException e) {
