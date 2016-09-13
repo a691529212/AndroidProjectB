@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -16,7 +17,7 @@ import vampire.com.androidprojectb.fragment.topic.TopicFragment;
 import vampire.com.androidprojectb.fragment.user.UserFragment;
 
 
-public class MainActivity extends BaseActivity implements View.OnClickListener {
+public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener {
 
 
     private FrameLayout frameLayout;
@@ -46,13 +47,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         btnUser = bindView(R.id.btn_user);
 
         radioGroup.check(R.id.btn_news);
+        radioGroup.setOnCheckedChangeListener(this);
 
-        btnNews.setOnClickListener(this);
-        btnRecreation.setOnClickListener(this);
-        btnTopic.setOnClickListener(this);
-        btnUser.setOnClickListener(this);
-
-        manager =getSupportFragmentManager();
+        manager = getSupportFragmentManager();
 
     }
 
@@ -61,10 +58,17 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
+    // 替换fragment
+    private void upDataFragment(Fragment fragment) {
 
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.frame_layout_main, fragment).commit();
+    }
+
+
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+        switch (checkedId) {
             // 新闻
             case R.id.btn_news:
                 NewsFragment newsFragment = new NewsFragment();
@@ -73,29 +77,22 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
             // 娱乐
             case R.id.btn_recreation:
-                RecreationFragment recreationFragment =new RecreationFragment();
+                RecreationFragment recreationFragment = new RecreationFragment();
                 upDataFragment(recreationFragment);
                 break;
 
             // 话题
             case R.id.btn_topic:
-                TopicFragment topicFragment =new TopicFragment();
+                TopicFragment topicFragment = new TopicFragment();
                 upDataFragment(topicFragment);
                 break;
 
             // 我
             case R.id.btn_user:
-                UserFragment userFragment =new UserFragment();
+                UserFragment userFragment = new UserFragment();
                 upDataFragment(userFragment);
                 break;
+
         }
-
-    }
-
-    // 替换fragment
-    private void upDataFragment(Fragment fragment){
-
-        FragmentTransaction transaction =  manager.beginTransaction();
-        transaction.replace(R.id.frame_layout_main,fragment).commit();
     }
 }
