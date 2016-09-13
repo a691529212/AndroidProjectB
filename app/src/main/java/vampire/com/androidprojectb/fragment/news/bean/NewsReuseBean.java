@@ -1,11 +1,11 @@
-package vampire.com.androidprojectb.fragment.news;
+package vampire.com.androidprojectb.fragment.news.bean;
 
 import java.util.List;
 
 /**
  * Created by Vampire on 16/9/12.
  */
-public class NewsBean {
+public class NewsReuseBean {
     private static final String TAG = "Vampire_NewsBean";
 
 
@@ -101,7 +101,7 @@ public class NewsBean {
 
     @Override
     public String toString() {
-        return "NewsBean{" +
+        return "NewsReuseBean{" +
                 "code=" + code +
                 ", msg='" + msg + '\'' +
                 ", newslist=" + newslist +
