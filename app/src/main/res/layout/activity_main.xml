@@ -15,9 +15,10 @@
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="55dp"
+        android:id="@+id/rg_main"
         android:orientation="horizontal">
         <RadioButton
-            android:id="@+id/cbx_news"
+            android:id="@+id/btn_news"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -27,7 +28,7 @@
             android:gravity="center"
             android:button="@null" />
         <RadioButton
-            android:id="@+id/cbx_recreation"
+            android:id="@+id/btn_recreation"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -37,7 +38,7 @@
             android:gravity="center"
             android:button="@null" />
         <RadioButton
-            android:id="@+id/cbx_topic"
+            android:id="@+id/btn_topic"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -47,7 +48,7 @@
             android:gravity="center"
             android:button="@null" />
         <RadioButton
-            android:id="@+id/cbx_user"
+            android:id="@+id/btn_user"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
