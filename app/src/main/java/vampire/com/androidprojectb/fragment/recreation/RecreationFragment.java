@@ -26,11 +26,11 @@ public class RecreationFragment extends BaseFragment {
     @Override
     protected void initView() {
         oldSaying = bindView(R.id.tv_old_saying_first);
-        ivRiddle = bindView(R.id.iv_riddle);
-        ivTwister = bindView(R.id.iv_twister);
-        ivBirthday = bindView(R.id.iv_birthday);
-        ivDream = bindView(R.id.iv_dream);
-        ivConstellation = bindView(R.id.iv_constellation);
+//        ivRiddle = bindView(R.id.iv_riddle);
+//        ivTwister = bindView(R.id.iv_twister);
+//        ivBirthday = bindView(R.id.iv_birthday);
+//        ivDream = bindView(R.id.iv_dream);
+//        ivConstellation = bindView(R.id.iv_constellation);
     }
 
     @Override
