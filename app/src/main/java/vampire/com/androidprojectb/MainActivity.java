@@ -1,7 +1,9 @@
 package vampire.com.androidprojectb;
 
 
+
 import vampire.com.androidprojectb.base.BaseActivity;
+
 
 public class MainActivity extends BaseActivity {
 
