@@ -48,7 +48,7 @@ public class UrlValues {
     public static final String HOT = "http://apis.baidu.com/txapi/weixin/wxhot";
 
     // 社会新闻(num , page) 10-50
-    public static final String SOCIAL = "http://apis.baidu.com/txapi/social/social";
+//    public static final String SOCIAL = "http://apis.baidu.com/txapi/social/social";
 
     // 美女图片 (num) 10-50
     public static final String GIRL = "http://apis.baidu.com/txapi/mvtp/meinv";

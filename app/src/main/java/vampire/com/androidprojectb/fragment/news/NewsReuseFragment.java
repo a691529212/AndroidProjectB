@@ -2,6 +2,7 @@ package vampire.com.androidprojectb.fragment.news;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -49,7 +50,7 @@ public class NewsReuseFragment extends BaseFragment  {
             //热门精选
             UrlValues.HOT,
             //社会新闻
-            UrlValues.SOCIAL,
+//            UrlValues.SOCIAL,
             //美女图片
             UrlValues.GIRL,
             //体育新闻
@@ -101,6 +102,8 @@ public class NewsReuseFragment extends BaseFragment  {
                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                     Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
                                     String detailUrl =  response.getNewslist().get(position).getUrl();
+                                    detailUrl.replaceAll(" +","");
+                                    Log.d("NewsReuseFragment", detailUrl);
                                     intent.putExtra(NewsDetailActivity.NEWS_DETAIL_KEY,detailUrl);
                                     startActivity(intent);
                                 }
