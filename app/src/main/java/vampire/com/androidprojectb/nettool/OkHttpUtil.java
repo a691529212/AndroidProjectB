@@ -88,6 +88,7 @@ public class OkHttpUtil implements NetInterface {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String str = response.body().string();
+
                 final T result = mGson.fromJson(str,tClass);
                 mHandler.post(new Runnable() {
                     @Override
