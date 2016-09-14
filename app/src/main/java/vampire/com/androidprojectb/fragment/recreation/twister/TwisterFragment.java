@@ -77,9 +77,9 @@ public class TwisterFragment extends BaseFragment {
             @Override
             public void onSuccess(TwisterBean response) {
                 String twister = response.getNewslist().get(0).getContent();
-                Log.d(TAG, "twister.indexOf:" + twister.indexOf("<br/>"));
-                twister.replaceAll("<br/>","\n");
-                twisterTV.setText(response.getNewslist().get(0).getContent());
+
+               twister = twister.replaceAll("<br/>","\n");
+                twisterTV.setText(twister);
             }
 
             @Override
