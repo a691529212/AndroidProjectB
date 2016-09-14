@@ -35,11 +35,11 @@ public class UserFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-//        MyUser myUser = MyUser.getCurrentUser(MyUser.class);
-//        if (myUser != null) {
-//            redSet.removeAllViews();
-////            redSet.addView();
-//        }
+        MyUser myUser = MyUser.getCurrentUser(MyUser.class);
+        if (myUser != null) {
+            redSet.removeAllViews();
+//            redSet.addView();
+        }
 
     }
 
