@@ -27,6 +27,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     private RadioButton btnUser;
     private RadioGroup radioGroup;
     private FragmentManager manager;
+    private NewsFragment newsFragment;
 
 
     @Override
@@ -55,7 +56,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
     @Override
     protected void initData() {
-
+        upDataFragment(newsFragment);
     }
 
     // 替换fragment
@@ -71,7 +72,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         switch (checkedId) {
             // 新闻
             case R.id.btn_news:
-                NewsFragment newsFragment = new NewsFragment();
+                newsFragment = new NewsFragment();
                 upDataFragment(newsFragment);
                 break;
 
