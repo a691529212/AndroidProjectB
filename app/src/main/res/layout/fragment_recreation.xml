@@ -1,135 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
         android:id="@+id/tv_old_saying_first"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:gravity="center"
         android:text="名言警句"
-        android:textSize="19sp"
-        android:gravity="center"/>
+        android:textSize="19sp" />
+
+    <TextView
+        android:id="@+id/tv_old_saying_name"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="--"
+        android:textSize="19sp" />
+
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:id="@+id/tv_old_saying_name"
-        android:text="--"
-        android:textSize="19sp"
-        android:gravity="center"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:layout_margin="5dp"
-        android:id="@+id/riddle">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:src="@drawable/select_riddle"
-            android:scaleType="fitXY"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_weight="8"
-            android:gravity="center"
-            android:textSize="19sp"
-            android:layout_height="match_parent"
-            android:text="脑筋急转弯"/>
+        android:layout_height="1dp"
+        android:background="#c6c6c6" />
 
-    </LinearLayout>
     <LinearLayout
+        android:id="@+id/riddle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal"
         android:layout_margin="5dp"
-        android:id="@+id/twister">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:src="@drawable/selected_twister"
-            android:scaleType="fitXY"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_weight="8"
-            android:gravity="center"
-            android:textSize="19sp"
-            android:layout_height="match_parent"
-            android:text="绕口令"/>
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:layout_margin="5dp"
-        android:id="@+id/life">
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_weight="1"
             android:layout_height="match_parent"
-            android:src="@drawable/animation_taiji"
-            android:scaleType="fitXY"/>
+            android:layout_weight="1"
+            android:scaleType="fitXY"
+            android:src="@drawable/select_riddle" />
+
         <TextView
             android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="8"
             android:gravity="center"
-            android:textSize="19sp"
-            android:layout_height="match_parent"
-            android:text="看相算命,独断阴阳"/>
+            android:text="脑筋急转弯"
+            android:textSize="19sp" />
 
     </LinearLayout>
 
-    <LinearLayout
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:layout_margin="5dp"
-        android:id="@+id/dream">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:src="@drawable/selected_dream"
-            android:scaleType="fitXY"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_weight="8"
-            android:gravity="center"
-            android:textSize="19sp"
-            android:layout_height="match_parent"
-            android:text="周公解梦"/>
+        android:layout_height="1dp"
+        android:background="#c6c6c6" />
 
-    </LinearLayout>
     <LinearLayout
+        android:id="@+id/twister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal"
         android:layout_margin="5dp"
-        android:id="@+id/constellation">
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_weight="1"
             android:layout_height="match_parent"
-            android:src="@drawable/selected_consellation"
-            android:scaleType="fitXY"/>
+            android:layout_weight="1"
+            android:scaleType="fitXY"
+            android:src="@drawable/selected_twister" />
+
         <TextView
             android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="8"
             android:gravity="center"
-            android:textSize="19sp"
-            android:layout_height="match_parent"
-            android:text="星座速配"/>
+            android:text="绕口令"
+            android:textSize="19sp" />
 
     </LinearLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#c6c6c6" />
 
+    <LinearLayout
+        android:id="@+id/life"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="fitXY"
+            android:src="@drawable/animation_taiji" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="8"
+            android:gravity="center"
+            android:text="看相算命,独断阴阳"
+            android:textSize="19sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#c6c6c6" />
+
+    <LinearLayout
+        android:id="@+id/dream"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="fitXY"
+            android:src="@drawable/selected_dream" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="8"
+            android:gravity="center"
+            android:text="周公解梦"
+            android:textSize="19sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#c6c6c6" />
+
+    <LinearLayout
+        android:id="@+id/constellation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="fitXY"
+            android:src="@drawable/selected_consellation" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="8"
+            android:gravity="center"
+            android:text="星座速配"
+            android:textSize="19sp" />
+
+    </LinearLayout>
 
 
 </LinearLayout>
