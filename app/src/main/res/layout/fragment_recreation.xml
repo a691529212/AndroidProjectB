@@ -4,9 +4,16 @@
     android:layout_height="match_parent">
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="160dp"
+        android:layout_height="100dp"
         android:id="@+id/tv_old_saying_first"
         android:text="名言警句"
+        android:textSize="19sp"
+        android:gravity="center"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:id="@+id/tv_old_saying_name"
+        android:text="--"
         android:textSize="19sp"
         android:gravity="center"/>
     <LinearLayout

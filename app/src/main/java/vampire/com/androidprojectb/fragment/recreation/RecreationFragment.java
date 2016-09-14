@@ -1,10 +1,14 @@
 package vampire.com.androidprojectb.fragment.recreation;
 
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import vampire.com.androidprojectb.R;
 import vampire.com.androidprojectb.base.BaseFragment;
+import vampire.com.androidprojectb.nettool.NetTool;
+import vampire.com.androidprojectb.nettool.OnHttpCallBack;
+import vampire.com.androidprojectb.values.UrlValues;
 
 /**
  * Created by Vampire on 16/9/12.
@@ -12,11 +16,12 @@ import vampire.com.androidprojectb.base.BaseFragment;
 public class RecreationFragment extends BaseFragment {
     private static final String TAG = "Vampire_RecreationFragment";
     private TextView oldSaying;
-    private ImageView ivRiddle;
-    private ImageView ivTwister;
-    private ImageView ivBirthday;
-    private ImageView ivDream;
-    private ImageView ivConstellation;
+    private TextView name;
+    private LinearLayout riddleLayout;
+    private LinearLayout twisterLayout;
+    private LinearLayout birthdayLatout;
+    private LinearLayout dreamLayout;
+    private LinearLayout constellationLayout;
 
     @Override
     protected int setLayout() {
@@ -26,15 +31,29 @@ public class RecreationFragment extends BaseFragment {
     @Override
     protected void initView() {
         oldSaying = bindView(R.id.tv_old_saying_first);
-//        ivRiddle = bindView(R.id.iv_riddle);
-//        ivTwister = bindView(R.id.iv_twister);
-//        ivBirthday = bindView(R.id.iv_birthday);
-//        ivDream = bindView(R.id.iv_dream);
-//        ivConstellation = bindView(R.id.iv_constellation);
+        name = bindView(R.id.tv_old_saying_name);
+
+        riddleLayout = bindView(R.id.riddle);
+        twisterLayout =bindView(R.id.twister);
+        birthdayLatout = bindView(R.id.life);
+        dreamLayout = bindView(R.id.dream);
+        constellationLayout = bindView(R.id.constellation);
     }
 
     @Override
     protected void initData() {
+        NetTool.getInstance().startRequest(UrlValues.SAYING, OldSayingBean.class, new OnHttpCallBack<OldSayingBean>() {
+            @Override
+            public void onSuccess(OldSayingBean response) {
+                oldSaying.setText(response.getNewslist().get(0).getContent());
+                name.setText(name.getText()+response.getNewslist().get(0).getMrname());
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+        });
 
     }
 }
