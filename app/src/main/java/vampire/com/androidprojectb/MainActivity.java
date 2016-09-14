@@ -56,6 +56,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
     @Override
     protected void initData() {
+        newsFragment = new NewsFragment();
         upDataFragment(newsFragment);
     }
 
