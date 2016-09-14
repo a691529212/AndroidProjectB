@@ -61,7 +61,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     }
 
     // 替换fragment
-    private void upDataFragment(Fragment fragment) {
+    public void upDataFragment(Fragment fragment) {
 
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.frame_layout_main, fragment).commit();

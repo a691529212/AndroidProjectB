@@ -1,11 +1,15 @@
 package vampire.com.androidprojectb.fragment.recreation;
 
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import vampire.com.androidprojectb.MainActivity;
 import vampire.com.androidprojectb.R;
 import vampire.com.androidprojectb.base.BaseFragment;
+import vampire.com.androidprojectb.fragment.recreation.riddle.RiddleFragment;
+import vampire.com.androidprojectb.fragment.recreation.twister.TwisterFragment;
 import vampire.com.androidprojectb.nettool.NetTool;
 import vampire.com.androidprojectb.nettool.OnHttpCallBack;
 import vampire.com.androidprojectb.values.UrlValues;
@@ -13,7 +17,7 @@ import vampire.com.androidprojectb.values.UrlValues;
 /**
  * Created by Vampire on 16/9/12.
  */
-public class RecreationFragment extends BaseFragment {
+public class RecreationFragment extends BaseFragment implements View.OnClickListener {
     private static final String TAG = "Vampire_RecreationFragment";
     private TextView oldSaying;
     private TextView name;
@@ -34,10 +38,17 @@ public class RecreationFragment extends BaseFragment {
         name = bindView(R.id.tv_old_saying_name);
 
         riddleLayout = bindView(R.id.riddle);
-        twisterLayout =bindView(R.id.twister);
+        twisterLayout = bindView(R.id.twister);
         birthdayLatout = bindView(R.id.life);
         dreamLayout = bindView(R.id.dream);
         constellationLayout = bindView(R.id.constellation);
+
+        riddleLayout.setOnClickListener(this);
+        twisterLayout.setOnClickListener(this);
+        birthdayLatout.setOnClickListener(this);
+        dreamLayout.setOnClickListener(this);
+        constellationLayout.setOnClickListener(this);
+
     }
 
     @Override
@@ -46,7 +57,7 @@ public class RecreationFragment extends BaseFragment {
             @Override
             public void onSuccess(OldSayingBean response) {
                 oldSaying.setText(response.getNewslist().get(0).getContent());
-                name.setText(name.getText()+response.getNewslist().get(0).getMrname());
+                name.setText(name.getText() + response.getNewslist().get(0).getMrname());
             }
 
             @Override
@@ -55,5 +66,24 @@ public class RecreationFragment extends BaseFragment {
             }
         });
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        MainActivity mainActivity = (MainActivity) getActivity();
+        switch (v.getId()) {
+            case R.id.riddle:
+                mainActivity.upDataFragment(new RiddleFragment());
+                break;
+            case R.id.twister:
+                mainActivity.upDataFragment(new TwisterFragment());
+                break;
+            case R.id.life:
+                break;
+            case R.id.dream:
+                break;
+            case R.id.constellation:
+                break;
+        }
     }
 }
