@@ -30,7 +30,8 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/text_name"
+android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text="123"
@@ -41,6 +42,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="看新闻扛把子"
+                    android:background="@drawable/enter_border"
                     android:textColor="#FcEc82" />
             </LinearLayout>
 
