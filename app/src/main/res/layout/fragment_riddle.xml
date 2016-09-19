@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:arc="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent">
+    <com.romainpiel.shimmer.ShimmerTextView
+        android:textColor="#dd94e9ef"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/tv_riddle"
+        android:textSize="23sp"
+        android:gravity="center"
+        android:text="问题"/>
+    <com.romainpiel.shimmer.ShimmerTextView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@+id/tv_riddle"
+        android:layout_marginTop="10dp"
+        android:textColor="#8ae785"
+        android:id="@+id/tv_request"
+        android:textSize="26sp"
+        android:visibility="gone"
+        android:gravity="center"
+        android:text="答案: "/>
+
+    <com.capricorn.ArcMenu
+        android:id="@+id/arc_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        arc:fromDegrees="@dimen/menuFromDegrees"
+        arc:toDegrees="@dimen/menuToDegrees"
+        arc:childSize="@dimen/menuChildSize"/>
+
+
+
+</RelativeLayout>

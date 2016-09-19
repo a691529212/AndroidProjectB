@@ -12,8 +12,8 @@ import vampire.com.androidprojectb.activity.NewsDetailActivity;
 import vampire.com.androidprojectb.base.BaseFragment;
 import vampire.com.androidprojectb.fragment.news.adapter.NewsReuseListViewAdapter;
 import vampire.com.androidprojectb.fragment.news.bean.NewsReuseBean;
-import vampire.com.androidprojectb.nettool.NetTool;
-import vampire.com.androidprojectb.nettool.OnHttpCallBack;
+import vampire.com.androidprojectb.tool.nettool.NetTool;
+import vampire.com.androidprojectb.tool.nettool.OnHttpCallBack;
 import vampire.com.androidprojectb.values.UrlValues;
 
 
