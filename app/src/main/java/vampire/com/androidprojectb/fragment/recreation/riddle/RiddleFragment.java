@@ -3,17 +3,17 @@ package vampire.com.androidprojectb.fragment.recreation.riddle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.capricorn.ArcMenu;
+import com.romainpiel.shimmer.Shimmer;
+import com.romainpiel.shimmer.ShimmerTextView;
 
-import cn.bmob.v3.a.a.This;
 import vampire.com.androidprojectb.MainActivity;
 import vampire.com.androidprojectb.R;
 import vampire.com.androidprojectb.base.BaseFragment;
 import vampire.com.androidprojectb.fragment.recreation.RecreationFragment;
-import vampire.com.androidprojectb.nettool.NetTool;
-import vampire.com.androidprojectb.nettool.OnHttpCallBack;
+import vampire.com.androidprojectb.tool.nettool.NetTool;
+import vampire.com.androidprojectb.tool.nettool.OnHttpCallBack;
 import vampire.com.androidprojectb.values.UrlValues;
 
 /**
@@ -21,8 +21,8 @@ import vampire.com.androidprojectb.values.UrlValues;
  */
 public class RiddleFragment extends BaseFragment {
     private static final String TAG = "Vampire_RiddleFragment";
-    private TextView riddleTV;
-    private TextView requesrTV;
+    private ShimmerTextView riddleTV;
+    private ShimmerTextView requesrTV;
     private ArcMenu arcMenu;
     private static final int[] ICON = new int[]{R.mipmap.back, R.mipmap.request, R.mipmap.a8p, R.mipmap.next};
 
@@ -37,6 +37,10 @@ public class RiddleFragment extends BaseFragment {
         riddleTV = bindView(R.id.tv_riddle);
         requesrTV = bindView(R.id.tv_request);
         arcMenu = bindView(R.id.arc_menu);
+        Shimmer shimmer = new Shimmer();
+        shimmer.setDuration(5000).setStartDelay(1000).setRepeatCount(2).setDirection(Shimmer.ANIMATION_DIRECTION_LTR);
+        shimmer.start(requesrTV);
+        shimmer.start(riddleTV);
     }
 
     @Override
@@ -52,7 +56,7 @@ public class RiddleFragment extends BaseFragment {
             @Override
             public void onSuccess(RiddleBean response) {
                 riddleTV.setText(response.getNewslist().get(0).getQuest());
-                requesrTV.setText("答案: "+response.getNewslist().get(0).getResult());
+                requesrTV.setText("答案: " + response.getNewslist().get(0).getResult());
             }
 
             @Override

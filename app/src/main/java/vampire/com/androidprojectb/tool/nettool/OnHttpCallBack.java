@@ -1,4 +1,4 @@
-package vampire.com.androidprojectb.nettool;
+package vampire.com.androidprojectb.tool.nettool;
 
 /**
  * 　　　　　　　　┏┓　　　┏┓+ +
@@ -26,9 +26,7 @@ package vampire.com.androidprojectb.nettool;
  * Created by R on 16/9/12.
  */
 
-public interface NetInterface {
-
-    <T> void startRequest(String url,
-                          Class<T> tClass
-            , OnHttpCallBack<T> callBack);
+public interface OnHttpCallBack<T> {
+    void onSuccess(T response);
+    void onError(Throwable e);
 }

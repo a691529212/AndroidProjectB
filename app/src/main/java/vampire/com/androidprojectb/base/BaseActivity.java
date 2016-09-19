@@ -7,7 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import vampire.com.androidprojectb.nettool.NetTool;
+import vampire.com.androidprojectb.tool.nettool.NetTool;
 
 
 public abstract class BaseActivity extends AppCompatActivity {

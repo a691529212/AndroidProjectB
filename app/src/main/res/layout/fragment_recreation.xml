@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
+    <com.romainpiel.shimmer.ShimmerTextView
+        android:textColor="#ddbd5ed2"
         android:id="@+id/tv_old_saying_first"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,14 +15,15 @@
         android:text="名言警句"
         android:textSize="19sp" />
 
-    <TextView
+    <com.romainpiel.shimmer.ShimmerTextView
         android:id="@+id/tv_old_saying_name"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center"
         android:text="--"
-        android:textSize="19sp" />
+        android:textColor="#ddbd5ed2"
+        android:textSize="16sp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -39,16 +42,19 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:scaleType="fitXY"
             android:src="@drawable/select_riddle" />
 
-        <TextView
+        <com.romainpiel.shimmer.ShimmerTextView
+            android:textColor="#dd5da5dc"
+            app:reflectionColor="#dd6dd7d0"
+            android:id="@+id/tv_riddle_menu"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="8"
             android:gravity="center"
             android:text="脑筋急转弯"
-            android:textSize="19sp" />
+            android:textSize="19sp"
+            />
 
     </LinearLayout>
 
@@ -69,16 +75,18 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:scaleType="fitXY"
             android:src="@drawable/selected_twister" />
 
-        <TextView
+        <com.romainpiel.shimmer.ShimmerTextView
+            android:id="@+id/tv_twister_menu"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="8"
             android:gravity="center"
             android:text="绕口令"
-            android:textSize="19sp" />
+            android:textColor="#dd5da5dc"
+            android:textSize="19sp"
+            app:reflectionColor="#dd6dd7d0" />
 
     </LinearLayout>
 
@@ -99,16 +107,18 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:scaleType="fitXY"
             android:src="@drawable/animation_taiji" />
 
-        <TextView
+        <com.romainpiel.shimmer.ShimmerTextView
+            android:id="@+id/tv_taiji_menu"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="8"
             android:gravity="center"
             android:text="看相算命,独断阴阳"
-            android:textSize="19sp" />
+            android:textColor="#dd5da5dc"
+            android:textSize="19sp"
+            app:reflectionColor="#dd6dd7d0" />
 
     </LinearLayout>
 
@@ -129,16 +139,18 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:scaleType="fitXY"
             android:src="@drawable/selected_dream" />
 
-        <TextView
+        <com.romainpiel.shimmer.ShimmerTextView
+            android:id="@+id/tv_dream_menu"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="8"
             android:gravity="center"
             android:text="周公解梦"
-            android:textSize="19sp" />
+            android:textColor="#dd5da5dc"
+            android:textSize="19sp"
+            app:reflectionColor="#dd6dd7d0" />
 
     </LinearLayout>
 
@@ -159,16 +171,18 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:scaleType="fitXY"
             android:src="@drawable/selected_consellation" />
 
-        <TextView
+        <com.romainpiel.shimmer.ShimmerTextView
+            android:id="@+id/tv_consellation_menu"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="8"
             android:gravity="center"
             android:text="星座速配"
-            android:textSize="19sp" />
+            android:textColor="#dd5da5dc"
+            android:textSize="19sp"
+            app:reflectionColor="#dd6dd7d0" />
 
     </LinearLayout>
 

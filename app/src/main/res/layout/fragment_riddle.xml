@@ -3,20 +3,20 @@
     android:layout_width="match_parent"
     xmlns:arc="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent">
-    <TextView
+    <com.romainpiel.shimmer.ShimmerTextView
+        android:textColor="#dd94e9ef"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:id="@+id/tv_riddle"
         android:textSize="23sp"
-        android:textColor="#ddd775e9"
         android:gravity="center"
         android:text="问题"/>
-    <TextView
+    <com.romainpiel.shimmer.ShimmerTextView
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_below="@+id/tv_riddle"
         android:layout_marginTop="10dp"
-        android:textColor="#74eae8"
+        android:textColor="#8ae785"
         android:id="@+id/tv_request"
         android:textSize="26sp"
         android:visibility="gone"

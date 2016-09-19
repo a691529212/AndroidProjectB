@@ -1,20 +1,19 @@
 package vampire.com.androidprojectb.fragment.recreation.twister;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.capricorn.ArcMenu;
 import com.capricorn.RayMenu;
+import com.romainpiel.shimmer.Shimmer;
+import com.romainpiel.shimmer.ShimmerTextView;
 
 import vampire.com.androidprojectb.MainActivity;
 import vampire.com.androidprojectb.R;
 import vampire.com.androidprojectb.base.BaseFragment;
 import vampire.com.androidprojectb.fragment.recreation.RecreationFragment;
-import vampire.com.androidprojectb.nettool.NetTool;
-import vampire.com.androidprojectb.nettool.OnHttpCallBack;
+import vampire.com.androidprojectb.tool.nettool.NetTool;
+import vampire.com.androidprojectb.tool.nettool.OnHttpCallBack;
 import vampire.com.androidprojectb.values.UrlValues;
 
 /**
@@ -22,7 +21,7 @@ import vampire.com.androidprojectb.values.UrlValues;
  */
 public class TwisterFragment extends BaseFragment {
     private static final String TAG = "Vampire_TwisterFragment";
-    private TextView twisterTV;
+    private ShimmerTextView twisterTV;
     private RayMenu rayMenu;
     private static final int[] ICONS = {R.mipmap.back, R.mipmap.a8p, R.mipmap.next};
 
@@ -35,6 +34,9 @@ public class TwisterFragment extends BaseFragment {
     protected void initView() {
         twisterTV = bindView(R.id.tv_twister);
         rayMenu = bindView(R.id.ray_menu);
+        Shimmer shimmer = new Shimmer();
+        shimmer.setDuration(5000).setStartDelay(1000).setRepeatCount(2).setDirection(Shimmer.ANIMATION_DIRECTION_LTR);
+        shimmer.start(twisterTV);
     }
 
     @Override
