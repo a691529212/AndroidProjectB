@@ -11,6 +11,7 @@
         android:background="#EB413D">
 
         <ImageView
+            android:id="@+id/image_back"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginLeft="15dp"
@@ -28,122 +29,120 @@
 
 
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/ll_one"
         android:layout_width="350dp"
+        android:layout_height="150dp"
         android:layout_below="@id/ll"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
-        android:orientation="vertical"
         android:background="@drawable/ll_border"
-        android:layout_height="150dp">
-       <LinearLayout
-           android:layout_width="match_parent"
-           android:layout_height="75dp"
-           android:orientation="horizontal">
-           <ImageView
-               android:layout_width="30dp"
-               android:layout_height="30dp"
-               android:layout_marginTop="30dp"
-               android:layout_marginLeft="12dp"
-               android:background="@mipmap/a8c"/>
-           <EditText
-               android:id="@+id/et_account"
-               android:layout_width="280dp"
-               android:layout_height="wrap_content"
-               android:layout_marginTop="30dp"
-               android:hint="请输入账号"/>
+        android:orientation="vertical">
 
-
-       </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="75dp"
             android:orientation="horizontal">
+
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginTop="30dp"
                 android:layout_marginLeft="12dp"
-                android:background="@mipmap/a8b"/>
+                android:layout_marginTop="30dp"
+                android:background="@mipmap/a8c" />
+
+            <EditText
+                android:id="@+id/et_account"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:hint="请输入账号" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="30dp"
+                android:background="@mipmap/a8b" />
+
             <EditText
                 android:id="@+id/et_password"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:password="true"
-                android:hint="密码"/>
+                android:hint="密码"
+                android:password="true" />
 
 
         </LinearLayout>
 
 
-
     </LinearLayout>
-    <TextView
-        android:id="@+id/text_enter"
-        android:layout_width="350dp"
-        android:layout_height="60dp"
-        android:background="@drawable/ll_border"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
-        android:layout_below="@id/ll_one"
-        android:gravity="center"
-        android:text="登 录"/>
+
     <TextView
         android:id="@+id/text_register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/text_enter"
-        android:layout_marginLeft="200dp"
-        android:layout_marginTop="10dp"
-        android:textSize="18sp"
-        android:text="请您注册登录"/>
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/ll_one"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/ll_border"
+        android:gravity="center"
+        android:text="注 册" />
+
+
+
     <TextView
         android:id="@+id/text_down"
-        android:layout_below="@id/text_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:layout_marginLeft="10dp"
-        android:text="还可以通过以下方式登录"/>
+        android:layout_marginTop="40dp"
+        android:layout_below="@id/text_register"
+        android:layout_marginLeft="20dp"
+        android:text="还可以通过以下方式登录"
+        android:textSize="18sp" />
+
     <LinearLayout
         android:layout_width="350dp"
+        android:layout_height="200dp"
         android:layout_below="@id/text_down"
-        android:orientation="horizontal"
-        android:layout_marginLeft="10dp"
-        android:background="@drawable/ll_border"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
-        android:layout_height="200dp">
+        android:background="@drawable/ll_border"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableTop="@mipmap/zw"
-            android:layout_marginTop="40dp"
             android:layout_marginLeft="16dp"
-            android:text="微信账号登录"/>
+            android:layout_marginTop="40dp"
+            android:drawableTop="@mipmap/zw"
+            android:text="微信账号登录" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="28dp"
+            android:layout_marginTop="40dp"
             android:drawableTop="@mipmap/zu"
-            android:layout_marginTop="40dp"
-            android:layout_marginLeft="28dp"
-            android:text="新浪微博登录"/>
+            android:text="微信账号登录" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableTop="@mipmap/zs"
-            android:layout_marginTop="40dp"
             android:layout_marginLeft="28dp"
-            android:text="QQ账号登录"/>
-
-
-
-
-
-
+            android:layout_marginTop="40dp"
+            android:drawableTop="@mipmap/zs"
+            android:text="微信账号登录" />
 
 
     </LinearLayout>

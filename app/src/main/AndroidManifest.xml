@@ -28,6 +28,12 @@
             </intent-filter>
         </activity>
        <activity android:name=".activity.NewsDetailActivity"/>
+        <activity android:name=".fragment.user.EnterActivity"/>
+        <activity android:name=".fragment.user.SettiingActivity"/>
+        <activity android:name=".fragment.user.RadioCollectActivity"/>
+        <activity android:name=".fragment.user.RadioCommentActivity"/>
+        <activity android:name=".fragment.user.RadioGoldActivity"/>
+        <activity android:name=".fragment.user.RadioReadActivity"/>
     </application>
 
 </manifest>
