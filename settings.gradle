@@ -1,4 +1,4 @@
-include ':app'
+include ':app', ':switchbutton'
 include ':library'
 include ':sample'
 include ':wheel'
