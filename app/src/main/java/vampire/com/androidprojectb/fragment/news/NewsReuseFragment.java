@@ -10,6 +10,7 @@ import android.widget.ListView;
 import vampire.com.androidprojectb.R;
 import vampire.com.androidprojectb.activity.NewsDetailActivity;
 import vampire.com.androidprojectb.base.BaseFragment;
+import vampire.com.androidprojectb.fragment.news.adapter.NewsReuseListViewAdapter;
 import vampire.com.androidprojectb.fragment.news.bean.NewsReuseBean;
 import vampire.com.androidprojectb.nettool.NetTool;
 import vampire.com.androidprojectb.nettool.OnHttpCallBack;
@@ -128,6 +129,5 @@ public class NewsReuseFragment extends BaseFragment  {
         homeReuseFragment.setArguments(bundle);
         return homeReuseFragment;
     }
-
 
 }

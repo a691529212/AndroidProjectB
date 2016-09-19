@@ -1,7 +1,5 @@
 package vampire.com.androidprojectb.values;
 
-import android.view.MotionEvent;
-
 /**
  * Created by Vampire on 16/9/12.
  */
@@ -92,25 +90,6 @@ public class UrlValues {
 
     // 周公解梦 (参数 word) ()utf-8
     public static final String DREAM = "http://apis.baidu.com/txapi/dream/dream";
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }
