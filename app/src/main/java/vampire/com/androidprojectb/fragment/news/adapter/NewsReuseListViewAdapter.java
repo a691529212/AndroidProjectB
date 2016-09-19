@@ -1,4 +1,4 @@
-package vampire.com.androidprojectb.fragment.news;
+package vampire.com.androidprojectb.fragment.news.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -76,21 +76,21 @@ public class NewsReuseListViewAdapter extends BaseAdapter {
             newsReuseHolder = (NewsReuseHolder) convertView.getTag();
         }
         Glide.with(MyApp.getContext()).load(bean.getNewslist().get(position).getPicUrl())
-                .bitmapTransform(new CropCircleTransformation(MyApp.getContext())).into(newsReuseHolder.multiNewsIv);
-        newsReuseHolder.titleMultiNewsTv.setText(bean.getNewslist().get(position).getTitle());
-        newsReuseHolder.timeMultiNewsTv.setText(bean.getNewslist().get(position).getCtime());
-        newsReuseHolder.replayMultiNewsTv.setText(bean.getNewslist().get(position).getDescription());
+                .bitmapTransform(new CropCircleTransformation(MyApp.getContext())).into(newsReuseHolder.newsReusePicUrl);
+        newsReuseHolder.newsReuseTitle.setText(bean.getNewslist().get(position).getTitle());
+        newsReuseHolder.newsReuseCtime.setText(bean.getNewslist().get(position).getCtime());
+        newsReuseHolder.newsReuseDescription.setText(bean.getNewslist().get(position).getDescription());
         return convertView;
     }
     class NewsReuseHolder {
-        private ImageView multiNewsIv;
-        private TextView titleMultiNewsTv, timeMultiNewsTv, replayMultiNewsTv;
+        private ImageView newsReusePicUrl;
+        private TextView newsReuseTitle, newsReuseCtime, newsReuseDescription;
 
         public NewsReuseHolder(View view) {
-            multiNewsIv = (ImageView) view.findViewById(R.id.iv_multi_news_image);
-            titleMultiNewsTv = (TextView) view.findViewById(R.id.tv_multi_news_title);
-            timeMultiNewsTv = (TextView) view.findViewById(R.id.tv_multi_news_time);
-            replayMultiNewsTv = (TextView) view.findViewById(R.id.tv_multi_news_reply_count);
+            newsReusePicUrl = (ImageView) view.findViewById(R.id.news_reuse_picurl_image_view);
+            newsReuseTitle = (TextView) view.findViewById(R.id.news_reuse_title_text_view);
+            newsReuseCtime = (TextView) view.findViewById(R.id.news_reuse_ctime_text_view);
+            newsReuseDescription = (TextView) view.findViewById(R.id.news_reuse_description_text_view);
         }
     }
 
