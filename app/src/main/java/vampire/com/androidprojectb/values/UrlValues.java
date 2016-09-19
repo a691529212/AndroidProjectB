@@ -33,7 +33,7 @@ public class UrlValues {
     public static final String HE = "&he=";
 
     // 对象为所有星座时
-    public static final String all = "1";
+    public static final String all = "&all=1";
 
     // 用于周公解梦的搜索关键字
     public static final String DREAM_WORD = "?word=";

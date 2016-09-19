@@ -68,7 +68,6 @@ public class FortunetellingFragment extends BaseFragment {
         int curYear = calendar.get(Calendar.YEAR);
         yearView.setViewAdapter(new DateNumberAdapter(getContext(), curYear - 100, curYear, 0));
         yearView.setCurrentItem(100);
-        Log.d("FortunetellingFragment", "curYear:" + curYear);
         yearView.addChangingListener(listener);
 
         // day
@@ -79,15 +78,21 @@ public class FortunetellingFragment extends BaseFragment {
         birthdayBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("FortunetellingFragment", "monthView.getCurrentItem():" + monthView.getCurrentItem());
-                Log.d("FortunetellingFragment", "dayView.getCurrentItem():" + dayView.getCurrentItem());
                 NetTool.getInstance().startRequest(
                         UrlValues.BIRTHDAY + UrlValues.MOUTH + (monthView.getCurrentItem() + 1) + UrlValues.DAY + (dayView.getCurrentItem() + 1)
                         , DateBean.class, new OnHttpCallBack<DateBean>() {
                             @Override
                             public void onSuccess(DateBean response) {
                                 bitTitleTv.setText(response.getNewslist().get(0).getTitle());
-                                birthdayBtn.setText(response.getNewslist().get(0).getContent());
+                                String request = response.getNewslist().get(0).getContent();
+                                request = request.replace("<P>", "   ");
+                                request = request.replace("</p>", "\n");
+                                request = request.replace("<p>", "  ");
+                                request = request.replace("<br><br><strong>", "\n\n\n   --");
+                                request = request.replace("</strong><br>", " :  ");
+                                request = request.replace("<br>", "");
+
+                                birRequestTv.setText(request);
 
                                 Shimmer shimmerL = new Shimmer();
                                 shimmerL.setDuration(3000).setStartDelay(300).setDirection(Shimmer.ANIMATION_DIRECTION_LTR);
