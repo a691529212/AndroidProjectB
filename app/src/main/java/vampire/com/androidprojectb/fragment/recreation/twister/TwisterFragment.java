@@ -2,7 +2,6 @@ package vampire.com.androidprojectb.fragment.recreation.twister;
 
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.capricorn.RayMenu;
 import com.romainpiel.shimmer.Shimmer;
@@ -12,6 +11,7 @@ import vampire.com.androidprojectb.MainActivity;
 import vampire.com.androidprojectb.R;
 import vampire.com.androidprojectb.base.BaseFragment;
 import vampire.com.androidprojectb.fragment.recreation.RecreationFragment;
+import com.capricorn.TouchAble;
 import vampire.com.androidprojectb.tool.nettool.NetTool;
 import vampire.com.androidprojectb.tool.nettool.OnHttpCallBack;
 import vampire.com.androidprojectb.values.UrlValues;
@@ -34,6 +34,7 @@ public class TwisterFragment extends BaseFragment {
     protected void initView() {
         twisterTV = bindView(R.id.tv_twister);
         rayMenu = bindView(R.id.ray_menu);
+        TouchAble.moveEvent(rayMenu,getContext());
         Shimmer shimmer = new Shimmer();
         shimmer.setDuration(5000).setStartDelay(1000).setRepeatCount(2).setDirection(Shimmer.ANIMATION_DIRECTION_LTR);
         shimmer.start(twisterTV);

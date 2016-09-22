@@ -14,6 +14,7 @@ import kankan.wheel.widget.OnWheelChangedListener;
 import kankan.wheel.widget.WheelView;
 import vampire.com.androidprojectb.R;
 import vampire.com.androidprojectb.base.BaseFragment;
+import vampire.com.androidprojectb.tool.FormatCodeUtil;
 import vampire.com.androidprojectb.tool.nettool.NetTool;
 import vampire.com.androidprojectb.tool.nettool.OnHttpCallBack;
 import vampire.com.androidprojectb.values.UrlValues;
@@ -79,10 +80,9 @@ public class FortunetellingFragment extends BaseFragment {
         birthdayBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("FortunetellingFragment", "monthView.getCurrentItem():" + monthView.getCurrentItem());
-                Log.d("FortunetellingFragment", "dayView.getCurrentItem():" + dayView.getCurrentItem());
+                String url = UrlValues.BIRTHDAY + UrlValues.MOUTH + (monthView.getCurrentItem() + 1) + UrlValues.DAY + (dayView.getCurrentItem() + 1);
                 NetTool.getInstance().startRequest(
-                        UrlValues.BIRTHDAY + UrlValues.MOUTH + (monthView.getCurrentItem() + 1) + UrlValues.DAY + (dayView.getCurrentItem() + 1)
+                        url
                         , DateBean.class, new OnHttpCallBack<DateBean>() {
                             @Override
                             public void onSuccess(DateBean response) {

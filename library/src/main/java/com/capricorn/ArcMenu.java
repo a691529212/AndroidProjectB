@@ -16,9 +16,13 @@
 
 package com.capricorn;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.os.Build;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -36,14 +40,17 @@ import android.widget.RelativeLayout;
 /**
  * A custom view that looks like the menu in <a href="https://path.com">Path
  * 2.0</a> (for iOS).
- * 
+ *
  * @author Capricorn
- * 
  */
 public class ArcMenu extends RelativeLayout {
     private ArcLayout mArcLayout;
 
     private ImageView mHintView;
+
+    private GestureDetector mGestureDector;
+    private boolean flag = true;
+    private ViewGroup controlLayout;
 
     public ArcMenu(Context context) {
         super(context);
@@ -56,21 +63,51 @@ public class ArcMenu extends RelativeLayout {
         applyAttrs(attrs);
     }
 
+    class MyGestureDetector extends GestureDetector.SimpleOnGestureListener{
+        @Override
+        public void onLongPress(MotionEvent e)
+        {
+            Log.d("MyGestureDetector", "changan");
+           // flag = false;
+            TouchAble.moveEvent(ArcMenu.this,getContext());
+            ArcMenu.this.setClickable(true);
+
+            super.onLongPress(e);
+        }
+
+
+
+        @Override
+        public boolean onSingleTapUp(MotionEvent e) {
+            Log.d("MyGestureDetector", "dianji");
+            mHintView.startAnimation(createHintSwitchAnimation(mArcLayout.isExpanded()));
+            mArcLayout.switchState(true);
+            return super.onSingleTapUp(e);
+        }
+    }
+
+
+
+    @TargetApi(Build.VERSION_CODES.CUPCAKE)
     private void init(Context context) {
+        mGestureDector = new GestureDetector(context,new MyGestureDetector());
         LayoutInflater li = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         li.inflate(R.layout.arc_menu, this);
 
         mArcLayout = (ArcLayout) findViewById(R.id.item_layout);
 
-        final ViewGroup controlLayout = (ViewGroup) findViewById(R.id.control_layout);
+        controlLayout = (ViewGroup) findViewById(R.id.control_layout);
         controlLayout.setClickable(true);
         controlLayout.setOnTouchListener(new OnTouchListener() {
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    mHintView.startAnimation(createHintSwitchAnimation(mArcLayout.isExpanded()));
-                    mArcLayout.switchState(true);
+                if(flag)
+                mGestureDector.onTouchEvent(event);
+                if (event.getAction() == MotionEvent.ACTION_MOVE) {
+                    
+//                    mHintView.startAnimation(createHintSwitchAnimation(mArcLayout.isExpanded()));
+//                    mArcLayout.switchState(true);
                 }
 
                 return false;
@@ -79,6 +116,7 @@ public class ArcMenu extends RelativeLayout {
 
         mHintView = (ImageView) findViewById(R.id.control_hint);
     }
+
 
     private void applyAttrs(AttributeSet attrs) {
         if (attrs != null) {

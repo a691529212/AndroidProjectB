@@ -12,6 +12,7 @@
         android:layout_weight="1"
         android:id="@+id/tv_twister"/>
     <com.capricorn.RayMenu
+        android:clickable="true"
         android:id="@+id/ray_menu"
         android:layout_width="fill_parent"
         android:layout_height="60dp"
