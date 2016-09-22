@@ -1,10 +1,7 @@
-package vampire.com.androidprojectb.fragment.user;
-
-import android.view.View;
-import android.widget.ImageView;
+package vampire.com.androidprojectb.fragment.topic;
 
 import vampire.com.androidprojectb.R;
-import vampire.com.androidprojectb.base.BaseActivity;
+import vampire.com.androidprojectb.base.BaseFragment;
 
 /**
  * code is far away from bug with the animal protecting
@@ -27,26 +24,19 @@ import vampire.com.androidprojectb.base.BaseActivity;
  * 　　　┃┫┫　┃┫┫
  * 　　　┗┻┛　┗┻┛
  */
-public class RadioGoldActivity extends BaseActivity implements View.OnClickListener {
-    private ImageView imageViewBack;
-
+public class AttentionFragment extends BaseFragment{
     @Override
     protected int setLayout() {
-        return R.layout.radiogold;
+        return R.layout.topic_attention;
     }
 
     @Override
     protected void initView() {
-        imageViewBack = bindView(R.id.image_back);
+
     }
 
     @Override
     protected void initData() {
-  imageViewBack.setOnClickListener(this);
-    }
 
-    @Override
-    public void onClick(View view) {
-        finish();
     }
 }

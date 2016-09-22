@@ -1,4 +1,4 @@
-package vampire.com.androidprojectb.fragment.user;
+package vampire.com.androidprojectb.activity;
 
 import vampire.com.androidprojectb.R;
 import vampire.com.androidprojectb.base.BaseActivity;

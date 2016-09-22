@@ -1,4 +1,4 @@
-package vampire.com.androidprojectb.fragment.user;
+package vampire.com.androidprojectb.fragment.topic.Adapter;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
@@ -28,22 +28,21 @@ import java.util.ArrayList;
  * 　　　┃┫┫　┃┫┫
  * 　　　┗┻┛　┗┻┛
  */
-public class CollectAdapter extends FragmentPagerAdapter{
-    private ArrayList<Fragment> fragments;
+public class TopicAdapter extends FragmentPagerAdapter{
     private Context context;
+    private ArrayList<Fragment> fragments;
     private ArrayList<String> arrayList;
-
-    public void setArrayList(ArrayList<String> arrayList) {
-        this.arrayList = arrayList;
-    }
-
-    public CollectAdapter(FragmentManager fm, Context context) {
+    public TopicAdapter(FragmentManager fm,Context context) {
         super(fm);
         this.context=context;
     }
 
     public void setFragments(ArrayList<Fragment> fragments) {
         this.fragments = fragments;
+    }
+
+    public void setArrayList(ArrayList<String> arrayList) {
+        this.arrayList = arrayList;
     }
 
     /**

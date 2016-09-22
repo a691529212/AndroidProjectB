@@ -1,6 +1,5 @@
-package vampire.com.androidprojectb.fragment.user;
+package vampire.com.androidprojectb.activity;
 
-import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -12,6 +11,7 @@ import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
 import vampire.com.androidprojectb.R;
 import vampire.com.androidprojectb.base.BaseActivity;
+import vampire.com.androidprojectb.fragment.user.MyUser;
 
 /**
  * code is far away from bug with the animal protecting

@@ -1,4 +1,4 @@
-package vampire.com.androidprojectb.fragment.user;
+package vampire.com.androidprojectb.fragment.user.radio;
 
 import android.graphics.Color;
 import android.support.design.widget.TabLayout;
@@ -6,12 +6,15 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import vampire.com.androidprojectb.R;
 import vampire.com.androidprojectb.base.BaseActivity;
+import vampire.com.androidprojectb.fragment.user.adapter.CollectAdapter;
+import vampire.com.androidprojectb.fragment.user.CommentCollectFragment;
+import vampire.com.androidprojectb.fragment.user.NewsCollectFragment;
+import vampire.com.androidprojectb.fragment.user.PhotoCollectFragment;
 
 /**
  * code is far away from bug with the animal protecting

@@ -92,4 +92,12 @@ public class UrlValues {
     public static final String DREAM = "http://apis.baidu.com/txapi/dream/dream";
 
 
+    //话题问吧Up的接口
+    public  static  final  String ASK_UP="http://c.m.163.com/newstopic/list/classification.html";
+   //话题问吧down的接口
+   public  static  final  String ASK_DOWN="http://c.m.163.com/newstopic/list/expert/5YWo5Zu9/0-10.html";
+  //视频的接口
+    public  static  final String  TOPIC_VIDEO="http://data.live.126.net/livechannel/previewlist.json";
+    //话题搜索的接口
+    public  static  final  String TOPIC_SEARCH="http://topic.comment.163.com/topic/recomend.html";
 }
