@@ -1,4 +1,4 @@
-package vampire.com.androidprojectb.activity;
+package vampire.com.androidprojectb.fragment.news.activity;
 
 import android.webkit.WebSettings;
 import android.webkit.WebView;
