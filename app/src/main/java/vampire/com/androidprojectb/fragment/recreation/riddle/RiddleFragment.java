@@ -1,8 +1,8 @@
 package vampire.com.androidprojectb.fragment.recreation.riddle;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.capricorn.ArcMenu;
 import com.romainpiel.shimmer.Shimmer;
@@ -12,6 +12,7 @@ import vampire.com.androidprojectb.MainActivity;
 import vampire.com.androidprojectb.R;
 import vampire.com.androidprojectb.base.BaseFragment;
 import vampire.com.androidprojectb.fragment.recreation.RecreationFragment;
+import com.capricorn.TouchAble;
 import vampire.com.androidprojectb.tool.nettool.NetTool;
 import vampire.com.androidprojectb.tool.nettool.OnHttpCallBack;
 import vampire.com.androidprojectb.values.UrlValues;
@@ -37,6 +38,17 @@ public class RiddleFragment extends BaseFragment {
         riddleTV = bindView(R.id.tv_riddle);
         requesrTV = bindView(R.id.tv_request);
         arcMenu = bindView(R.id.arc_menu);
+//        arcMenu.getControlLayout().setOnLongClickListener();
+//        arcMenu.setOnLongClickListener(new View.OnLongClickListener() {
+//            @Override
+//            public boolean onLongClick(View v) {
+//                Log.d(TAG, "vampire");
+//                arcMenu.setClickable(true);
+//                TouchAble.moveEvent(arcMenu,getContext());
+//                return true;
+//            }
+//        });
+
         Shimmer shimmer = new Shimmer();
         shimmer.setDuration(5000).setStartDelay(1000).setRepeatCount(2).setDirection(Shimmer.ANIMATION_DIRECTION_LTR);
         shimmer.start(requesrTV);
