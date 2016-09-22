@@ -1,4 +1,4 @@
-package vampire.com.androidprojectb.fragment.user;
+package vampire.com.androidprojectb.fragment.user.radio;
 
 import android.media.Image;
 import android.view.View;

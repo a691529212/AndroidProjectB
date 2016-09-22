@@ -1,7 +1,9 @@
-package vampire.com.androidprojectb.fragment.user;
+package vampire.com.androidprojectb.fragment.topic.Adapter;
 
-import vampire.com.androidprojectb.R;
-import vampire.com.androidprojectb.base.BaseActivity;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 
 /**
  * code is far away from bug with the animal protecting
@@ -24,19 +26,26 @@ import vampire.com.androidprojectb.base.BaseActivity;
  * 　　　┃┫┫　┃┫┫
  * 　　　┗┻┛　┗┻┛
  */
-public class RadioCommentActivity extends BaseActivity{
+public class FindTopicRightAdapter extends BaseAdapter{
+    private Context context;
+
     @Override
-    protected int setLayout() {
-        return R.layout.radiocomment;
+    public int getCount() {
+        return 0;
     }
 
     @Override
-    protected void initView() {
-
+    public Object getItem(int i) {
+        return null;
     }
 
     @Override
-    protected void initData() {
+    public long getItemId(int i) {
+        return 0;
+    }
 
+    @Override
+    public View getView(int i, View view, ViewGroup viewGroup) {
+        return null;
     }
 }

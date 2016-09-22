@@ -1,8 +1,7 @@
-package vampire.com.androidprojectb.fragment.user;
+package vampire.com.androidprojectb.activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -13,6 +12,7 @@ import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
 import vampire.com.androidprojectb.R;
 import vampire.com.androidprojectb.base.BaseActivity;
+import vampire.com.androidprojectb.fragment.user.MyUser;
 
 /**
  * code is far away from bug with the animal protecting
@@ -60,7 +60,7 @@ public class EnterActivity extends BaseActivity implements View.OnClickListener 
     }
 
     @Override
-    public void onClick(View view) {
+    public void onClick(final View view) {
         switch (view.getId()) {
             case R.id.text_register:
                 Intent intent = new Intent(this, RegisterActivity.class);
@@ -73,19 +73,19 @@ public class EnterActivity extends BaseActivity implements View.OnClickListener 
                 String password = editTextPassword.getText().toString();
                 user.setUsername(name);
                 user.setPassword(password);
-               ProgressDialog progressDialog;
-                progressDialog = new ProgressDialog(view.getContext());
-                progressDialog.setCancelable(true);
-                progressDialog.setMessage("正在加载....");
 
-                progressDialog.show();
                 user.login(new SaveListener<MyUser>() {
                     //e表示没有异常就注册,如果有异常就执行下面的方法
                     @Override
                     public void done(MyUser myUser, BmobException e) {
                         if (e==null){
                             Log.d("ZhuCeActivity", "登陆成功了");
+                            ProgressDialog progressDialog;
+                            progressDialog = new ProgressDialog(view.getContext());
+                            progressDialog.setCancelable(true);
+                            progressDialog.setMessage("正在加载....");
 
+                            progressDialog.show();
                             finish();
                         }else {
                             Toast.makeText(EnterActivity.this, "您输入的账号或密码不正确", Toast.LENGTH_SHORT).show();

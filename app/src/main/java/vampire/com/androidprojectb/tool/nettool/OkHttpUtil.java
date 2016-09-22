@@ -6,6 +6,7 @@ import android.os.Looper;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 
 import java.io.File;
 import java.io.IOException;
@@ -74,6 +75,7 @@ public class OkHttpUtil implements NetInterface {
                 .addHeader("apikey", "35fe329001b3e54bfd917517f52fcbe0")
                 .build();
         Log.d("OkHttpUtil", url);
+
         mClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, final IOException e) {
@@ -89,15 +91,26 @@ public class OkHttpUtil implements NetInterface {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String str = response.body().string();
+                Log.d("Vampire", "**************************");
+                Log.d("Vampire", str+"**");
+                Log.d("Vampire", String.valueOf(str.length()));
+
+                try {
+                    final T result = mGson.fromJson(str, tClass);
+                    mHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            callBack.onSuccess(result);
+                        }
+                    });
+                }catch (IllegalStateException e){
+                    Log.d("Vampire", e.toString());
+                }catch (JsonSyntaxException exception){
+                    Log.d("Vampire", exception.toString());
+                }
 
 
-                final T result = mGson.fromJson(str, tClass);
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        callBack.onSuccess(result);
-                    }
-                });
+
             }
         });
     }
