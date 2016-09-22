@@ -12,6 +12,8 @@ import com.romainpiel.shimmer.ShimmerTextView;
 import vampire.com.androidprojectb.MainActivity;
 import vampire.com.androidprojectb.R;
 import vampire.com.androidprojectb.base.BaseFragment;
+import vampire.com.androidprojectb.fragment.recreation.constellation.ConstellationFragment;
+import vampire.com.androidprojectb.fragment.recreation.dream.DreamFragment;
 import vampire.com.androidprojectb.fragment.recreation.fortunetelling.FortunetellingFragment;
 import vampire.com.androidprojectb.fragment.recreation.riddle.RiddleFragment;
 import vampire.com.androidprojectb.fragment.recreation.twister.TwisterFragment;
@@ -68,8 +70,8 @@ public class RecreationFragment extends BaseFragment implements View.OnClickList
         dreamLayout.setOnClickListener(this);
         constellationLayout.setOnClickListener(this);
 
-        shimmerl = new Shimmer();
         shimmerR = new Shimmer();
+        shimmerl = new Shimmer();
         shimmerl.setDuration(3000).setStartDelay(300).setDirection(Shimmer.ANIMATION_DIRECTION_LTR);// left tp right
         shimmerR.setDuration(3000).setStartDelay(300).setDirection(Shimmer.ANIMATION_DIRECTION_RTL);// right to left
         shimmerl.start(oldSaying);
@@ -88,7 +90,7 @@ public class RecreationFragment extends BaseFragment implements View.OnClickList
             @Override
             public void onSuccess(OldSayingBean response) {
 
-                if (response.getNewslist().get(0).getContent().length()>60){
+                if (response.getNewslist().get(0).getContent().length() > 60) {
                     oldSaying.setTextSize(15);
                 }
                 oldSaying.setText(response.getNewslist().get(0).getContent());
@@ -117,8 +119,10 @@ public class RecreationFragment extends BaseFragment implements View.OnClickList
                 mainActivity.upDataFragment(new FortunetellingFragment());
                 break;
             case R.id.dream:
+                mainActivity.upDataFragment(new DreamFragment());
                 break;
             case R.id.constellation:
+                mainActivity.upDataFragment(new ConstellationFragment());
                 break;
         }
     }

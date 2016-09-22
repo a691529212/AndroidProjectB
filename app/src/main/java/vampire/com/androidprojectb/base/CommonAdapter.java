@@ -15,12 +15,12 @@ import java.util.List;
 public abstract class CommonAdapter<T> extends BaseAdapter {
     private List<T> beenList;
     private LayoutInflater inflater;
-    private int converViewId;
+    private int convertViewId;
 
-    public CommonAdapter(List<T> beenList, Context context, int id) {
+    public CommonAdapter(List<T> beenList, Context context, int convertViewId) {
         this.beenList = beenList;
         inflater = LayoutInflater.from(context);
-        converViewId = id;
+        this.convertViewId = convertViewId;
     }
 
     @Override
@@ -41,7 +41,7 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        CommonViewHolder commonViewHolder = CommonViewHolder.getHolder(convertView, inflater, converViewId, parent);
+        CommonViewHolder commonViewHolder = CommonViewHolder.getHolder(convertView, inflater, convertViewId, parent);
         setData(beenList.get(position),commonViewHolder);
         return commonViewHolder.getConvertView();
     }

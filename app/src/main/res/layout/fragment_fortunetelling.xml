@@ -66,22 +66,23 @@
             <com.romainpiel.shimmer.ShimmerTextView
                 android:id="@+id/tv_bir_title"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:text="标题"
+                android:textSize="19sp"
                 android:textColor="#dde79c6a"
                 app:reflectionColor="#ddd3df68" />
 
             <com.romainpiel.shimmer.ShimmerTextView
                 android:id="@+id/tv_bir_request"
                 android:layout_width="match_parent"
-                android:layout_height="600dp"
+                android:layout_height="wrap_content"
                 android:padding="5dp"
-                android:gravity="center"
                 android:layout_weight="8"
                 android:text="阴阳独断"
                 android:textColor="#dd5da5dc"
-                android:textSize="10sp"
+                android:textSize="14sp"
                 app:reflectionColor="#dd6dd7d0" />
 
         </LinearLayout>
