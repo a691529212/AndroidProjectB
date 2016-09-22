@@ -33,25 +33,23 @@ import vampire.com.androidprojectb.base.MyApp;
  * 　　　　　　　　　　┃┫┫　┃┫┫
  * 　　　　　　　　　　┗┻┛　┗┻┛+ + + +
  * <p>
- * Created by R on 16/9/13.
+ * Created by R on 16/9/20.
  */
 
-public class PopupWindowListViewAdapter extends BaseAdapter{
+public class TitleAddAdapter extends BaseAdapter{
     private Context context;
 
-    public PopupWindowListViewAdapter(Context context) {
+    public TitleAddAdapter(Context context) {
         this.context = context;
     }
-
-
     @Override
     public int getCount() {
-        return   MyApp.getListTitle().size();
+        return MyApp.getListTitle().size();
     }
 
     @Override
     public Object getItem(int position) {
-        return  MyApp.getListTitle().get(position);
+        return MyApp.getListTitle().get(position);
     }
 
     @Override
@@ -61,22 +59,22 @@ public class PopupWindowListViewAdapter extends BaseAdapter{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        PopupWindowHolder popupWindowHolder = null;
+        TitleAddViewHolder holder;
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.item_news_pop_window_list_view, null);
-            popupWindowHolder = new PopupWindowHolder(convertView);
-            convertView.setTag(popupWindowHolder);
+            convertView = LayoutInflater.from(context).inflate(R.layout.fragment_news_button_pop_list_item, null);
+            holder = new TitleAddViewHolder(convertView);
+            convertView.setTag(holder);
         } else {
-            popupWindowHolder = (PopupWindowHolder) convertView.getTag();
+            holder = (TitleAddViewHolder) convertView.getTag();
         }
-        popupWindowHolder.newsTitle.setText(  MyApp.getListTitle().get(position));
+        holder.textview.setText(MyApp.getListTitle().get(position));
         return convertView;
     }
-    class PopupWindowHolder {
-        private TextView newsTitle;
-        public PopupWindowHolder(View view) {
-            newsTitle = (TextView) view.findViewById(R.id.news_pop_window_text_veiw);
+    class TitleAddViewHolder {
+        private TextView textview;
 
+        public TitleAddViewHolder(View view) {
+            textview = (TextView) view.findViewById(R.id.fragment_news_button_pop_list_view_text_view);
         }
     }
 }

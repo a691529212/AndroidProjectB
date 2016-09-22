@@ -75,7 +75,8 @@ public class NewsReuseListViewAdapter extends BaseAdapter {
         } else {
             newsReuseHolder = (NewsReuseHolder) convertView.getTag();
         }
-        Glide.with(MyApp.getContext()).load(bean.getNewslist().get(position).getPicUrl())
+
+        Glide.with(MyApp.getContext()).load(bean.getNewslist().get(position).getPicUrl()).placeholder(R.mipmap.imgres)
                 .bitmapTransform(new CropCircleTransformation(MyApp.getContext())).into(newsReuseHolder.newsReusePicUrl);
         newsReuseHolder.newsReuseTitle.setText(bean.getNewslist().get(position).getTitle());
         newsReuseHolder.newsReuseCtime.setText(bean.getNewslist().get(position).getCtime());
@@ -96,5 +97,6 @@ public class NewsReuseListViewAdapter extends BaseAdapter {
 
     public void setBean(NewsReuseBean bean) {
         this.bean = bean;
+        notifyDataSetChanged();
     }
 }

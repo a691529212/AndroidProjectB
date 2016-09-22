@@ -7,8 +7,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.util.List;
+
 import vampire.com.androidprojectb.R;
-import vampire.com.androidprojectb.base.MyApp;
 
 /**
  * 　　　　　　　　┏┓　　　┏┓+ +
@@ -32,26 +33,26 @@ import vampire.com.androidprojectb.base.MyApp;
  * 　　　　　　　　　┗┓┓┏━┳┓┏┛ + + + +
  * 　　　　　　　　　　┃┫┫　┃┫┫
  * 　　　　　　　　　　┗┻┛　┗┻┛+ + + +
- * <p>
- * Created by R on 16/9/13.
+ * <p/>
+ * Created by R on 16/9/19.
  */
 
-public class PopupWindowListViewAdapter extends BaseAdapter{
+public class PopupWindowAdapter extends BaseAdapter {
     private Context context;
+    private List<String> list;
 
-    public PopupWindowListViewAdapter(Context context) {
+    public PopupWindowAdapter(Context context) {
         this.context = context;
     }
 
-
     @Override
     public int getCount() {
-        return   MyApp.getListTitle().size();
+        return list.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return  MyApp.getListTitle().get(position);
+        return list.get(position);
     }
 
     @Override
@@ -61,22 +62,31 @@ public class PopupWindowListViewAdapter extends BaseAdapter{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        PopupWindowHolder popupWindowHolder = null;
+        PopupViewHolder holder;
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.item_news_pop_window_list_view, null);
-            popupWindowHolder = new PopupWindowHolder(convertView);
-            convertView.setTag(popupWindowHolder);
+            convertView = LayoutInflater.from(context).inflate(R.layout.fragment_news_button_pop_list_item, null);
+            holder = new PopupViewHolder(convertView);
+            convertView.setTag(holder);
         } else {
-            popupWindowHolder = (PopupWindowHolder) convertView.getTag();
+            holder = (PopupViewHolder) convertView.getTag();
         }
-        popupWindowHolder.newsTitle.setText(  MyApp.getListTitle().get(position));
+        holder.textview.setText(list.get(position));
         return convertView;
     }
-    class PopupWindowHolder {
-        private TextView newsTitle;
-        public PopupWindowHolder(View view) {
-            newsTitle = (TextView) view.findViewById(R.id.news_pop_window_text_veiw);
 
+    class PopupViewHolder {
+        private TextView textview;
+
+        public PopupViewHolder(View view) {
+            textview = (TextView) view.findViewById(R.id.fragment_news_button_pop_list_view_text_view);
         }
     }
+
+
+    public void setList(List<String> list) {
+        this.list = list;
+        notifyDataSetChanged();
+    }
+
+
 }

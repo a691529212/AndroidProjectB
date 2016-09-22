@@ -1,11 +1,6 @@
-package vampire.com.androidprojectb.fragment.news.adapter;
+package vampire.com.androidprojectb.fragment.news.bean;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-
-import vampire.com.androidprojectb.base.MyApp;
-import vampire.com.androidprojectb.fragment.news.NewsReuseFragment;
+import vampire.com.androidprojectb.values.UrlValues;
 
 /**
  * 　　　　　　　　┏┓　　　┏┓+ +
@@ -30,28 +25,35 @@ import vampire.com.androidprojectb.fragment.news.NewsReuseFragment;
  * 　　　　　　　　　　┃┫┫　┃┫┫
  * 　　　　　　　　　　┗┻┛　┗┻┛+ + + +
  * <p>
- * Created by R on 16/9/13.
+ * Created by R on 16/9/19.
  */
 
-public class NewsAdapter extends FragmentPagerAdapter {
+public class TitleBean {
 
-    public NewsAdapter(FragmentManager fm) {
-        super(fm);
-        notifyDataSetChanged();
-    }
 
-    @Override
-    public Fragment getItem(int position) {
-        return NewsReuseFragment.newInstance(position);
-    }
+    public static final String[] TITLE = {
+            "热门精选", "美女图片", "体育新闻", "科技新闻", "国际新闻"
+            , "奇闻趣事", "娱乐花边", "苹果新闻", "生活健康"
+    };
 
-    @Override
-    public int getCount() {
-        return MyApp.getListTitle().size();
-    }
-
-    @Override
-    public CharSequence getPageTitle(int position) {
-        return MyApp.getListTitle().get(position);
-    }
+    public static final String[] URLS = {
+            //热门精选
+            UrlValues.HOT,
+            //美女图片
+            UrlValues.GIRL,
+            //体育新闻
+            UrlValues.SPORTS,
+            //科技新闻
+            UrlValues.SCIENCE,
+            //国际新闻
+            UrlValues.WORLD,
+            //奇闻趣事
+            UrlValues.INTERESTING,
+            //娱乐花边
+            UrlValues.ENTERARTAINMENT,
+            //苹果新闻
+            UrlValues.APPLE,
+            //生活健康
+            UrlValues.HEALTH
+    };
 }

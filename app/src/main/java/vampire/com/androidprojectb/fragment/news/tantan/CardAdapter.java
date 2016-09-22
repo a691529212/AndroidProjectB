@@ -1,14 +1,18 @@
-package vampire.com.androidprojectb.fragment.news.adapter;
+package vampire.com.androidprojectb.fragment.news.tantan;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import vampire.com.androidprojectb.R;
-import vampire.com.androidprojectb.base.MyApp;
+import vampire.com.androidprojectb.fragment.news.bean.NewsReuseBean;
 
 /**
  * 　　　　　　　　┏┓　　　┏┓+ +
@@ -32,26 +36,36 @@ import vampire.com.androidprojectb.base.MyApp;
  * 　　　　　　　　　┗┓┓┏━┳┓┏┛ + + + +
  * 　　　　　　　　　　┃┫┫　┃┫┫
  * 　　　　　　　　　　┗┻┛　┗┻┛+ + + +
- * <p>
- * Created by R on 16/9/13.
+ * <p/>
+ * Created by R on 16/9/21.
  */
 
-public class PopupWindowListViewAdapter extends BaseAdapter{
-    private Context context;
+public class CardAdapter extends BaseAdapter {
+    private Context mContext;
+    private NewsReuseBean mCardList;
+    private  int i = 0;
 
-    public PopupWindowListViewAdapter(Context context) {
-        this.context = context;
+    public void setmCardList(NewsReuseBean mCardList) {
+        this.mCardList = mCardList;
+        Log.d("CardAdapter", "asdfasdf");
+        notifyDataSetChanged();
     }
 
+    public CardAdapter(Context mContext) {
+        this.mContext = mContext;
+    }
 
     @Override
     public int getCount() {
-        return   MyApp.getListTitle().size();
+        Log.d("CardAdapter", "getcount" + mCardList);
+        return mCardList == null ? 0 : mCardList.getNewslist().size();
     }
 
     @Override
     public Object getItem(int position) {
-        return  MyApp.getListTitle().get(position);
+        i++;
+
+        return mCardList.getNewslist().get(i);
     }
 
     @Override
@@ -61,21 +75,30 @@ public class PopupWindowListViewAdapter extends BaseAdapter{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        PopupWindowHolder popupWindowHolder = null;
+        Log.d("CardAdapter", "getview");
+        ViewHolder holder = null;
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.item_news_pop_window_list_view, null);
-            popupWindowHolder = new PopupWindowHolder(convertView);
-            convertView.setTag(popupWindowHolder);
+            LayoutInflater inflater = (LayoutInflater) mContext
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = inflater.inflate(R.layout.item_tantan, parent, false);
+            holder = new ViewHolder(convertView);
         } else {
-            popupWindowHolder = (PopupWindowHolder) convertView.getTag();
+            holder = (ViewHolder) convertView.getTag();
         }
-        popupWindowHolder.newsTitle.setText(  MyApp.getListTitle().get(position));
+        Glide.with(mContext)
+                .load(mCardList.getNewslist().get(i).getPicUrl())
+                .into(holder.mCardImageView);
+        holder.mCardName.setText(mCardList.getNewslist().get(i).getTitle());
         return convertView;
     }
-    class PopupWindowHolder {
-        private TextView newsTitle;
-        public PopupWindowHolder(View view) {
-            newsTitle = (TextView) view.findViewById(R.id.news_pop_window_text_veiw);
+
+    class ViewHolder {
+        TextView mCardName;
+        ImageView mCardImageView;
+
+        public ViewHolder(View view) {
+            mCardImageView = (ImageView) view.findViewById(R.id.helloText);
+            mCardName = (TextView) view.findViewById(R.id.card_name);
 
         }
     }
