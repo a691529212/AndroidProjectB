@@ -11,7 +11,11 @@ import vampire.com.androidprojectb.MainActivity;
 import vampire.com.androidprojectb.R;
 import vampire.com.androidprojectb.base.BaseFragment;
 import vampire.com.androidprojectb.fragment.recreation.RecreationFragment;
+
 import com.capricorn.TouchAble;
+
+import vampire.com.androidprojectb.tool.dbtool.DBFavorite;
+import vampire.com.androidprojectb.tool.dbtool.DBTool;
 import vampire.com.androidprojectb.tool.nettool.NetTool;
 import vampire.com.androidprojectb.tool.nettool.OnHttpCallBack;
 import vampire.com.androidprojectb.values.UrlValues;
@@ -34,7 +38,7 @@ public class TwisterFragment extends BaseFragment {
     protected void initView() {
         twisterTV = bindView(R.id.tv_twister);
         rayMenu = bindView(R.id.ray_menu);
-        TouchAble.moveEvent(rayMenu,getContext());
+        TouchAble.moveEvent(rayMenu, getContext());
         Shimmer shimmer = new Shimmer();
         shimmer.setDuration(5000).setStartDelay(1000).setRepeatCount(2).setDirection(Shimmer.ANIMATION_DIRECTION_LTR);
         shimmer.start(twisterTV);
@@ -50,7 +54,7 @@ public class TwisterFragment extends BaseFragment {
     private void initRayMenu() {
         final int itemCount = ICONS.length;
         for (int i = 0; i < itemCount; i++) {
-            ImageView item = new ImageView(getContext());
+            final ImageView item = new ImageView(getContext());
             item.setImageResource(ICONS[i]);
 
             final int position = i;
@@ -65,6 +69,12 @@ public class TwisterFragment extends BaseFragment {
                             break;
                         case 1:
                             // 收藏
+                            DBFavorite dbFavorite =new DBFavorite();
+                            dbFavorite.setType("twister");
+                            dbFavorite.setTitle(twisterTV.getText().toString());
+                            DBTool.getInstance().insertFavorite(dbFavorite);
+
+                            item.setImageResource(R.mipmap.ac7);
                             break;
                         case 2:
                             getTwister();
@@ -81,8 +91,10 @@ public class TwisterFragment extends BaseFragment {
             public void onSuccess(TwisterBean response) {
                 String twister = response.getNewslist().get(0).getContent();
 
-               twister = twister.replaceAll("<br/>","\n");
+                twister = twister.replaceAll("<br/>", "\n");
+//                DBTool.getInstance().getFavorite("twister");
                 twisterTV.setText(twister);
+
             }
 
             @Override
