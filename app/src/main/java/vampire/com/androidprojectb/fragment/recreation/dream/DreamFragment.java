@@ -1,19 +1,38 @@
 package vampire.com.androidprojectb.fragment.recreation.dream;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.iflytek.cloud.SpeechConstant;
+import com.iflytek.cloud.SpeechError;
+import com.iflytek.cloud.SpeechSynthesizer;
+import com.iflytek.cloud.SynthesizerListener;
 import com.romainpiel.shimmer.Shimmer;
 import com.romainpiel.shimmer.ShimmerTextView;
+import com.yalantis.contextmenu.lib.ContextMenuDialogFragment;
+import com.yalantis.contextmenu.lib.interfaces.OnMenuItemClickListener;
 
+import java.lang.ref.SoftReference;
+
+import vampire.com.androidprojectb.MainActivity;
 import vampire.com.androidprojectb.R;
 import vampire.com.androidprojectb.base.BaseFragment;
+import vampire.com.androidprojectb.base.MyApp;
+import vampire.com.androidprojectb.fragment.recreation.RecreationFragment;
+import vampire.com.androidprojectb.tool.ContextMenu;
 import vampire.com.androidprojectb.tool.FormatCodeUtil;
+import vampire.com.androidprojectb.tool.Speaker;
 import vampire.com.androidprojectb.tool.nettool.NetTool;
 import vampire.com.androidprojectb.tool.nettool.OnHttpCallBack;
+import vampire.com.androidprojectb.values.StringValues;
 import vampire.com.androidprojectb.values.UrlValues;
 
 /**
@@ -25,6 +44,9 @@ public class DreamFragment extends BaseFragment {
     private Button dreamBtn;
     private EditText dreamEt;
     private ShimmerTextView titleTv;
+    private String voiceName = "vixm";
+    private ContextMenuDialogFragment contextMenuDialogFragment;
+    private SpeechSynthesizer synthesizer;
 
     @Override
     protected int setLayout() {
@@ -34,6 +56,40 @@ public class DreamFragment extends BaseFragment {
     @Override
     protected void initView() {
 
+        // 将标题栏显示
+        final MainActivity mainActivity = (MainActivity) getActivity();
+        mainActivity.getMainTitle().setVisibility(View.VISIBLE);
+        Button back = mainActivity.getBack();
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mainActivity.upDataFragment(new RecreationFragment());
+            }
+        });
+        contextMenuDialogFragment = ContextMenu.showContextMenu();
+        Button down = mainActivity.getDown();
+        down.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                contextMenuDialogFragment.show(getChildFragmentManager(), "ContextMenuDialogFragment");
+            }
+        });
+        contextMenuDialogFragment.setItemClickListener(new OnMenuItemClickListener() {
+            @Override
+            public void onMenuItemClick(View clickedView, int position) {
+                voiceName = StringValues.VOICE[position];
+                //1.创建SpeechSynthesizer对象, 第二个参数：本地合成时传InitListener
+                synthesizer = SpeechSynthesizer.createSynthesizer(mContext, null);
+                //2.合成参数设置，详见《科大讯飞MSC API手册(Android)》SpeechSynthesizer 类
+                synthesizer.setParameter(SpeechConstant.VOICE_NAME, voiceName);//设置发音人
+                synthesizer.setParameter(SpeechConstant.SPEED, "50");//设置语速
+                synthesizer.setParameter(SpeechConstant.VOLUME, "80");//设置音量，范围0~100
+                synthesizer.startSpeaking(requestTv.getText().toString(), Speaker.mSynListeners);
+
+            }
+        });
+
+
         requestTv = bindView(R.id.tv_dream_request);
         titleTv = bindView(R.id.tv_dream_title);
         dreamBtn = bindView(R.id.btn_dream);
@@ -42,7 +98,6 @@ public class DreamFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-        Log.d(TAG, UrlValues.DREAM + UrlValues.DREAM_WORD + FormatCodeUtil.codingFormat(dreamEt.getText().toString()));
         dreamBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,24 +105,18 @@ public class DreamFragment extends BaseFragment {
                         DreamBean.class, new OnHttpCallBack<DreamBean>() {
                             @Override
                             public void onSuccess(DreamBean response) {
-                                Log.d(TAG, "response:" + response.getNewslist());
                                 if (response.getNewslist() != null) {
                                     requestTv.setText(response.getNewslist().get(0).getResult());
                                     titleTv.setText(response.getNewslist().get(0).getTitle());
                                 } else {
-                                    requestTv.setText("观自在菩萨,行深般若波罗蜜多时，照见五蕴皆空，度一切苦厄。" +
-                                            "舍利子，色不异空，空不异色，色即是空，空即是色，受想行识，亦复如是。" +
-                                            "舍利子，是诸法空相，不生不灭，不垢不净，不增不减。是故空中无色，无受想行识，无眼耳鼻舌身意，无色声香味触法，无眼界，乃至无意识界。" +
-                                            "无无明，亦无无明尽，乃至无老死，亦无老死尽。无苦集灭道，无智亦无得。以无所得故，菩提萨埵，依般若波罗蜜多故，心无罣碍，无罣碍故，无有恐怖，远离颠倒梦想，究竟涅磐。" +
-                                            "三世诸佛，依般若波罗蜜多故，得阿耨多罗三藐三菩提。" +
-                                            "故知般若波罗蜜多，是大神咒，是大明咒，是无上咒，是无等等咒，能除一切苦，真实不虚。" +
-                                            "故说般若波罗蜜多咒，即说咒曰：揭谛揭谛波罗揭谛波罗僧揭谛菩提萨婆诃。");
+                                    requestTv.setText(StringValues.MOTET);
                                     titleTv.setText("波若波罗蜜心经");
                                 }
                                 Shimmer shimmer = new Shimmer();
                                 shimmer.setDuration(6000).setStartDelay(300).setDirection(Shimmer.ANIMATION_DIRECTION_LTR);// left tp right
                                 shimmer.start(requestTv);
                                 shimmer.start(titleTv);
+
 
                             }
 
@@ -80,4 +129,13 @@ public class DreamFragment extends BaseFragment {
         });
 
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        MainActivity mainActivity = (MainActivity) getActivity();
+        mainActivity.getMainTitle().setVisibility(View.GONE);
+    }
+
+
 }

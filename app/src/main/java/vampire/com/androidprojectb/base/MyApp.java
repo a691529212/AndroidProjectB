@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.iflytek.cloud.SpeechConstant;
+import com.iflytek.cloud.SpeechUtility;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,6 +30,9 @@ public class MyApp extends Application {
         //第一：默认初始化 通常会在Application的onCreate方法里写
         Bmob.initialize(this, "1f593c7c45cc220c981e72df2e4c7d4b");
         Fresco.initialize(this);
+        // 初始化 语音配置对象
+        SpeechUtility.createUtility(this, SpeechConstant.APPID + "=57e3982d");
+
         for (int i = 0; i < TitleBean.URLS.length; i++) {
             listTitle.add(TitleBean.TITLE[i]);
             hasMapTitle.put(TitleBean.TITLE[i], TitleBean.URLS[i]);

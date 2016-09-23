@@ -5,6 +5,37 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="vampire.com.androidprojectb.MainActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="#d6d6d6"
+        android:visibility="gone"
+        android:id="@+id/main_linear_layout">
+        <Button
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_margin="3dp"
+            android:background="@mipmap/back"
+            android:id="@+id/main_go_back"/>
+        <com.romainpiel.shimmer.ShimmerTextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="PROJECT-B"
+            android:id="@+id/tv_main_title"
+            android:textColor="#c192e1"
+            android:layout_centerHorizontal="true"
+            android:textSize="25sp"
+            android:gravity="center"
+            />
+        <Button
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_margin="3dp"
+            android:layout_alignParentRight="true"
+            android:background="@mipmap/go_down"
+            android:id="@+id/main_go_down"/>
+
+    </RelativeLayout>
 
     <FrameLayout
         android:id="@+id/frame_layout_main"
