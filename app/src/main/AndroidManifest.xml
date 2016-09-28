@@ -59,6 +59,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".fragment.news.amap.LastLocation_Activity"/>
         <activity android:name=".activity.EnterActivity" />
         <activity android:name=".activity.SettiingActivity" />
@@ -72,12 +73,9 @@
         <activity android:name=".fragment.news.tantan.TanTanAcitivity" />
         <activity android:name=".fragment.news.activity.TabLayoutTitleActivity" />
         <activity android:name=".fragment.news.activity.NewsDetailActivity" />
-        <activity android:name=".fragment.user.EnterActivity" />
-        <activity android:name=".fragment.user.SettiingActivity" />
-        <activity android:name=".fragment.user.RadioCollectActivity" />
-        <activity android:name=".fragment.user.RadioCommentActivity" />
-        <activity android:name=".fragment.user.RadioGoldActivity" />
-        <activity android:name=".fragment.user.RadioReadActivity" />
+
+        <activity android:name=".activity.AskUpSecondActivity"/>
+        <activity android:name=".activity.AskDownSecondActivity"/>
 
     </application>
 

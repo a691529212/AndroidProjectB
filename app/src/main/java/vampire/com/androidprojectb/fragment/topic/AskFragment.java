@@ -1,5 +1,6 @@
 package vampire.com.androidprojectb.fragment.topic;
 
+import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +11,8 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 
 import vampire.com.androidprojectb.R;
+import vampire.com.androidprojectb.activity.AskDownSecondActivity;
+import vampire.com.androidprojectb.activity.AskUpSecondActivity;
 import vampire.com.androidprojectb.base.BaseFragment;
 import vampire.com.androidprojectb.base.MyApp;
 import vampire.com.androidprojectb.fragment.topic.Adapter.AskDownAdapter;
@@ -68,7 +71,7 @@ public class AskFragment extends BaseFragment {
         imageViewIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //下面的temp等于0是什么意思
+                //下面的temp等于0是代表else后面的temp=0
                 if (temp == 0){
                     upAdapter.setCoutnt(15);
                     temp =1;
@@ -90,11 +93,22 @@ public class AskFragment extends BaseFragment {
     protected void initData() {
         recyclerViewAskHead.setLayoutManager(manager);
         recyclerViewAskHead.setAdapter(upAdapter);
-        upAdapter.setCoutnt(5);
+//        upAdapter.setCoutnt(5);
          NetTool.getInstance().startRequest(UrlValues.ASK_UP, AskUpBean.class, new OnHttpCallBack<AskUpBean>() {
              @Override
-             public void onSuccess(AskUpBean response) {
+             public void onSuccess(final AskUpBean response) {
                  upAdapter.setUpBean(response);
+                 upAdapter.setOnItemOclickAsk(new AskRvUpAdapter.OnItemOclickAsk() {
+                     @Override
+                     public void ItemOnClick(int pos) {
+                         String idUrl=response.getData().get(pos).getId();
+                         String nameUrl=response.getData().get(pos).getName();
+                         Intent intent=new Intent(mContext,AskUpSecondActivity.class);
+                         intent.putExtra("id",idUrl);
+                         intent.putExtra("name",nameUrl);
+                         startActivity(intent);
+                     }
+                 });
              }
 
              @Override
@@ -108,8 +122,22 @@ public class AskFragment extends BaseFragment {
         listViewAsk.addHeaderView(view);
         NetTool.getInstance().startRequest(UrlValues.ASK_DOWN, AskDownBean.class, new OnHttpCallBack<AskDownBean>() {
             @Override
-            public void onSuccess(AskDownBean response) {
+            public void onSuccess(final AskDownBean response) {
                 downAdapter.setAskDownBean(response);
+                downAdapter.setDownOnClick(new AskDownAdapter.CardViewAskDownOnClick() {
+                    @Override
+                    public void ItemOclick(int pos) {
+                        String idUrl=response.getData().getExpertList().get(pos).getExpertId();
+                        String nameUrl=response.getData().getExpertList().get(pos).getAlias();
+                        String photoUrl=response.getData().getExpertList().get(pos).getPicurl();
+                        Intent intent=new Intent(mContext, AskDownSecondActivity.class);
+                        intent.putExtra("id",idUrl);
+                        intent.putExtra("name",nameUrl);
+                        intent.putExtra("photo",photoUrl);
+                        startActivity(intent);
+                    }
+                });
+
             }
 
             @Override

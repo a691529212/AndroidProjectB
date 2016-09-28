@@ -1,5 +1,17 @@
 package vampire.com.androidprojectb.tool.nettool;
 
+import android.util.Log;
+
+import com.capricorn.BuildConfig;
+
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 /**
  * 　　　　　　　　┏┓　　　┏┓+ +
  * 　　　　　　　┏┛┻━━━┛┻┓ + +
@@ -26,7 +38,7 @@ package vampire.com.androidprojectb.tool.nettool;
  * Created by R on 16/9/12.
  */
 
-public class NetTool implements NetInterface{
+public class NetTool extends OkHttpClient implements NetInterface{
     private static NetTool ourInstance;
     private NetInterface mNetInterface;
 

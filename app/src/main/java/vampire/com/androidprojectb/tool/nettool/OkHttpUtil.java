@@ -1,23 +1,28 @@
 package vampire.com.androidprojectb.tool.nettool;
 
+
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
+
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
+import vampire.com.androidprojectb.base.MyApp;
 
 /**
  * 　　　　　　　　┏┓　　　┏┓+ +
@@ -41,7 +46,7 @@ import okhttp3.Response;
  * 　　　　　　　　　┗┓┓┏━┳┓┏┛ + + + +
  * 　　　　　　　　　　┃┫┫　┃┫┫
  * 　　　　　　　　　　┗┻┛　┗┻┛+ + + +
- * <p/>
+ * <p>
  * Created by R on 16/9/12.
  */
 
@@ -68,12 +73,34 @@ public class OkHttpUtil implements NetInterface {
     }
 
 
-    @Override
+     @Override
     public <T> void startRequest(String url, final Class<T> tClass, final OnHttpCallBack<T> callBack) {
-        Request request = new Request
-                .Builder().url(url)
-                .addHeader("apikey", "35fe329001b3e54bfd917517f52fcbe0")
-                .build();
+        Log.d("OkHttpUtil", url);
+        Request request;
+         //有的请求需要加body
+         RequestBody body = RequestBody.create(MediaType.parse("html/txt"),"data=AD9/fXPmdAPktxm8hlqlG2TsD4ZylgBFnC2Y9ruMOxU%3D");
+        if (url.equals("http://topic.comment.163.com/topic/recomend.html")||url.equals("http://topic.comment.163.com/topic/list/myfollow.html")) {
+            request = new Request
+                    .Builder().url(url)
+                    .addHeader("Server"," nginx")
+                    .addHeader("Date","Tue, 27 Sep 2016 06:04:53 GMT")
+                    .addHeader("Content-Type","text/html;charset=UTF-8")
+                    .addHeader("Content-Length","1779")
+                    .addHeader("Connection","keep-alive")
+
+                    .addHeader("Vary","Accept-Encoding")
+                    .addHeader("Vary","Accept-Encoding")
+
+                    .build();
+            Log.d("OkHttpUtil", "in");
+        } else {
+
+            request = new Request
+                    .Builder().url(url)
+                    .addHeader("apikey", "35fe329001b3e54bfd917517f52fcbe0")
+                    .build();
+        }
+
         Log.d("OkHttpUtil", url);
 
         mClient.newCall(request).enqueue(new Callback() {
@@ -90,28 +117,37 @@ public class OkHttpUtil implements NetInterface {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                String str = response.body().string();
+                String str = response.body().string().trim();
                 Log.d("Vampire", "**************************");
-                Log.d("Vampire", str+"**");
+
+                Log.d("Vampire", "aaa" + str + "**");
+                if(str.length() == 160){
+                    File cacheDir = MyApp.getContext().getCacheDir();
+                    if(!cacheDir.exists()){
+                        cacheDir.mkdir();
+                    }
+                    File text = new File(cacheDir,"ceshi.txt");
+                    if(!text.exists()){
+                        text.createNewFile();
+                    }
+                    FileOutputStream fileOutputStream = new FileOutputStream(text);
+                    fileOutputStream.write(str.getBytes());
+                }
                 Log.d("Vampire", String.valueOf(str.length()));
 
-                try {
-                    final T result = mGson.fromJson(str, tClass);
-                    mHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            callBack.onSuccess(result);
-                        }
-                    });
-                }catch (IllegalStateException e){
-                    Log.d("Vampire", e.toString());
-                }catch (JsonSyntaxException exception){
-                    Log.d("Vampire", exception.toString());
-                }
 
+                final T result = mGson.fromJson(str, tClass);
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        callBack.onSuccess(result);
+                    }
+                });
 
 
             }
+
         });
+
     }
 }
