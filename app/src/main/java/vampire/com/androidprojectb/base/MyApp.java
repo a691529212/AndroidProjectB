@@ -11,11 +11,13 @@ import java.util.List;
 
 import cn.bmob.v3.Bmob;
 import vampire.com.androidprojectb.fragment.news.bean.TitleBean;
+import vampire.com.androidprojectb.tool.dbtool.DBTool;
+import vampire.com.androidprojectb.values.StringValues;
 
 
 public class MyApp extends Application {
     private static final String TAG = "Vampire_MyApp";
-
+    private DBTool dbTool;
     private static Context mContext;
     private static List<String> listTitle = new ArrayList<>();
     private static HashMap<String, String> hasMapTitle = new HashMap<>();
@@ -32,7 +34,17 @@ public class MyApp extends Application {
             listTitle.add(TitleBean.TITLE[i]);
             hasMapTitle.put(TitleBean.TITLE[i], TitleBean.URLS[i]);
         }
+        title();
 
+    }
+
+    private void title() {
+        HashMap<String,String> hashMap = new HashMap<>();
+        List<String> listtitle = new ArrayList<>();
+        for (int i = 0; i < StringValues.TITLE.length; i++) {
+
+
+        }
     }
 
     public static Context getContext() {
