@@ -17,7 +17,7 @@ public class StringValues {
             "三世诸佛，依般若波罗蜜多故，得阿耨多罗三藐三菩提。" +
             "故知般若波罗蜜多，是大神咒，是大明咒，是无上咒，是无等等咒，能除一切苦，真实不虚。" +
             "故说般若波罗蜜多咒，即说咒曰：揭谛揭谛波罗揭谛波罗僧揭谛菩提萨婆诃。";
-    public static final String[] VOICE = {"xiaoyan", "xiaoyu", "vixy", "xixm",
+    public static final String[] VOICE = {"xiaoyan", "xiaoyu", "vixy", "vixm",
             "vixl", "vixr", "vixyun", "vixk", "vixqa",
             "vixying", "vixx", "vinn", "vils"};
     public static final String[] VOICE_NAME = {"小妍", "东方", "小月", "粤语",

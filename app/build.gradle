@@ -55,6 +55,8 @@ dependencies {
     //    compile 'io.reactivex:rxjava:1.1.8'
     compile 'com.facebook.shimmer:shimmer:0.1.0@aar'
     compile files('libs/Msc.jar')
-
     compile 'com.yalantis:contextmenu:1.0.7'
+    compile project(':loadingdrawable')
+    compile project(':biuedittext')
+    compile 'org.greenrobot:eventbus:3.0.0'
 }

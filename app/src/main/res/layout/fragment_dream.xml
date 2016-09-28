@@ -1,26 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <EditText
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@mipmap/left"
+        android:id="@+id/iv_head_left"
+        android:layout_marginLeft="30dp"
+        />
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@mipmap/left"
+        android:id="@+id/iv_head"
+        android:layout_centerHorizontal="true"
+        />
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@mipmap/left"
+        android:id="@+id/iv_head_right"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="30dp"
+        />
+
+    <me.james.biuedittext.BiuEditText
         android:id="@+id/et_dream"
+        android:layout_below="@+id/iv_head"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="梦里遇到的事物"/>
+        android:hint="梦里遇到的事物"
+        app:biu_duration="600"
+        app:biu_text_color="#a7e7e1"
+        app:biu_text_scale="1.5"
+        app:biu_text_start_size="12sp"
+        app:biu_type="flyup"
+        />
+
     <Button
         android:id="@+id/btn_dream"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="解梦"/>
-    <com.romainpiel.shimmer.ShimmerTextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="23sp"
-        android:gravity="center"
-        android:id="@+id/tv_dream_title"/>
-    <com.romainpiel.shimmer.ShimmerTextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_dream_request"/>
+        android:layout_below="@+id/et_dream"
+        android:text="解梦" />
 
-</LinearLayout>
+    <ListView
+        android:id="@+id/lv_dream_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_dream"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#d6dd66" />
+
+    <com.romainpiel.shimmer.ShimmerTextView
+        android:id="@+id/tv_dream_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_dream"
+        android:gravity="center"
+        android:textSize="23sp" />
+
+    <com.romainpiel.shimmer.ShimmerTextView
+        android:id="@+id/tv_dream_request"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_dream_title" />
+
+</RelativeLayout>

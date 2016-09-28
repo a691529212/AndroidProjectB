@@ -4,15 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
     <com.romainpiel.shimmer.ShimmerTextView
+        android:layout_marginTop="15dp"
         android:textColor="#ddbd5ed2"
         android:id="@+id/tv_old_saying_first"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="3"
         android:gravity="center"
-        android:text="名言警句"
         android:textSize="22sp" />
 
     <com.romainpiel.shimmer.ShimmerTextView
@@ -21,9 +20,10 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="--"
+        android:text=""
         android:textColor="#ddbd5ed2"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:layout_marginBottom="6dp"/>
 
     <TextView
         android:layout_width="match_parent"

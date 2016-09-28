@@ -9,9 +9,13 @@ import android.widget.TextView;
 import com.romainpiel.shimmer.Shimmer;
 import com.romainpiel.shimmer.ShimmerTextView;
 
+import app.dinus.com.loadingdrawable.LoadingView;
+import app.dinus.com.loadingdrawable.render.LoadingDrawable;
+import app.dinus.com.loadingdrawable.render.scenery.ElectricFanLoadingRenderer;
 import vampire.com.androidprojectb.MainActivity;
 import vampire.com.androidprojectb.R;
 import vampire.com.androidprojectb.base.BaseFragment;
+import vampire.com.androidprojectb.base.MyApp;
 import vampire.com.androidprojectb.fragment.recreation.constellation.ConstellationFragment;
 import vampire.com.androidprojectb.fragment.recreation.dream.DreamFragment;
 import vampire.com.androidprojectb.fragment.recreation.fortunetelling.FortunetellingFragment;
@@ -40,6 +44,7 @@ public class RecreationFragment extends BaseFragment implements View.OnClickList
     private ShimmerTextView dreamTV;
     private ShimmerTextView constellationTV;
     private Shimmer shimmerR;
+    private LoadingDrawable loadingDrawable;
 
     @Override
     protected int setLayout() {
@@ -82,6 +87,10 @@ public class RecreationFragment extends BaseFragment implements View.OnClickList
         shimmerR.start(dreamTV);
         shimmerl.start(constellationTV);
 
+        loadingDrawable = new LoadingDrawable(new ElectricFanLoadingRenderer(getContext()));
+        oldSaying.setBackground(loadingDrawable);
+        loadingDrawable.start();
+
     }
 
     @Override
@@ -89,6 +98,8 @@ public class RecreationFragment extends BaseFragment implements View.OnClickList
         NetTool.getInstance().startRequest(UrlValues.SAYING, OldSayingBean.class, new OnHttpCallBack<OldSayingBean>() {
             @Override
             public void onSuccess(OldSayingBean response) {
+                loadingDrawable.stop();
+                oldSaying.setBackground(null);
 
                 if (response.getNewslist().get(0).getContent().length() > 60) {
                     oldSaying.setTextSize(15);
