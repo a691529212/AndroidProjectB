@@ -38,6 +38,8 @@
         <activity android:name=".fragment.user.radio.RadioGoldActivity"/>
         <activity android:name=".fragment.user.radio.RadioReadActivity"/>
         <activity android:name=".activity.FindTopicActivity"/>
+        <activity android:name=".activity.AskUpSecondActivity"/>
+        <activity android:name=".activity.AskDownSecondActivity"/>
     </application>
 
 </manifest>

@@ -40,9 +40,13 @@ public class EnterActivity extends BaseActivity implements View.OnClickListener 
     private TextView textViewEnter;
     private EditText editTextAccount;
     private EditText editTextPassword;
+
+
+
     @Override
     protected int setLayout() {
         return R.layout.enterlayout;
+
     }
 
     @Override

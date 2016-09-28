@@ -31,4 +31,5 @@ public interface NetInterface {
     <T> void startRequest(String url,
                           Class<T> tClass
             , OnHttpCallBack<T> callBack);
+
 }

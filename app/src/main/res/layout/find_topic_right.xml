@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="100dp">
+<com.facebook.drawee.view.SimpleDraweeView
+    android:id="@+id/drawee_view_image"
+    android:layout_width="60dp"
+    android:layout_height="60dp"
+    android:layout_centerVertical="true"
+    android:background="@mipmap/ic_launcher"/>
+    <TextView
+        android:id="@+id/text_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textSize="25sp"
+        android:layout_toRightOf="@id/drawee_view_image"
+        android:text="456"/>
+    <TextView
+        android:id="@+id/text_concern_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/drawee_view_image"
+        android:layout_marginTop="55dp"
+        android:text="789"/>
+    <TextView
+        android:id="@+id/text_guan_zhu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/text_concern_count"
+        android:layout_marginTop="55dp"
+        android:text="关注"/>
+    <TextView
+        android:id="@+id/text_question_counts"
+        android:layout_width="wrap_content"
+        android:layout_toRightOf="@id/text_guan_zhu"
+        android:layout_marginTop="55dp"
+        android:layout_marginLeft="8dp"
+        android:layout_height="wrap_content"
+        android:text="236"/>
+    <TextView
+        android:id="@+id/text_question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/text_question_counts"
+        android:layout_marginTop="55dp"
+        android:text="提问"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/find_ask_borer"
+        android:textColor="#4F90E7"
+        android:layout_toRightOf="@id/text_question"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="55dp"
+        android:text="问吧"/>
+</RelativeLayout>

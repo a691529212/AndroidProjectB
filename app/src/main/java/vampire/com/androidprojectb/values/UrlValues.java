@@ -94,10 +94,22 @@ public class UrlValues {
 
     //话题问吧Up的接口
     public  static  final  String ASK_UP="http://c.m.163.com/newstopic/list/classification.html";
+    //话题问吧第二界面的接口前缀
+    public  static  final  String ASK_UP_PREFIXION="http://c.m.163.com/newstopic/list/expert/classification/";
+    //话题问吧第二界面的接口后缀
+    public  static  final  String ASK_UP_SUFFIX="/0-10.html";
    //话题问吧down的接口
    public  static  final  String ASK_DOWN="http://c.m.163.com/newstopic/list/expert/5YWo5Zu9/0-10.html";
+  //话题问吧down的第二界面的接口前缀
+    public  static  final  String ASK_DOWN_PREFIXION="http://c.m.163.com/newstopic/qa/";
+    //话题问吧down的第二界面接口的后缀
+    public  static  final  String ASK_DOWN_SUFFIX=".html";
   //视频的接口
     public  static  final String  TOPIC_VIDEO="http://data.live.126.net/livechannel/previewlist.json";
     //话题搜索的接口
     public  static  final  String TOPIC_SEARCH="http://topic.comment.163.com/topic/recomend.html";
+    public  static  final  String TOPIC_SEARCH_SECOND_PREFIXION="http://c.3g.163.com/newstopic/qa/";
+    public  static  final  String TOPIC_SEARCH_SECOND_SUFFIX=".html";
+
+
 }

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -39,7 +40,15 @@ public class AskRvUpAdapter extends RecyclerView.Adapter<AskRvUpAdapter.MyViewHo
     private Context context;
     private AskUpBean upBean;
     private  int coutnt = 5;
+    private OnItemOclickAsk onItemOclickAsk;
 
+    public void setOnItemOclickAsk(OnItemOclickAsk onItemOclickAsk) {
+        this.onItemOclickAsk = onItemOclickAsk;
+    }
+
+    public  interface  OnItemOclickAsk{
+        void ItemOnClick(int pos);
+    }
     public void setCoutnt(int coutnt) {
         this.coutnt = coutnt;
         notifyDataSetChanged();
@@ -63,10 +72,16 @@ public class AskRvUpAdapter extends RecyclerView.Adapter<AskRvUpAdapter.MyViewHo
 
 
     @Override
-    public void onBindViewHolder(AskRvUpAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(AskRvUpAdapter.MyViewHolder holder, final int position) {
         holder.textViewName.setText(upBean.getData().get(position).getName());
         Uri uri=Uri.parse(upBean.getData().get(position).getIcon());
         holder.simpleDraweeViewImage.setImageURI(uri);
+        holder.relativeLayoutUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onItemOclickAsk.ItemOnClick(position);
+            }
+        });
     }
 
     @Override
@@ -85,10 +100,12 @@ public class AskRvUpAdapter extends RecyclerView.Adapter<AskRvUpAdapter.MyViewHo
     public class MyViewHolder extends RecyclerView.ViewHolder {
         SimpleDraweeView simpleDraweeViewImage;
         TextView textViewName;
+        RelativeLayout relativeLayoutUp;
         public MyViewHolder(View itemView) {
             super(itemView);
             simpleDraweeViewImage= (SimpleDraweeView) itemView.findViewById(R.id.drawee_view_icon);
             textViewName= (TextView) itemView.findViewById(R.id.text_name);
+            relativeLayoutUp= (RelativeLayout) itemView.findViewById(R.id.rl_up);
         }
     }
 }

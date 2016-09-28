@@ -72,4 +72,5 @@ public class CommonViewHolder {
         SimpleDraweeView simpleDraweeView =getView(id);
         simpleDraweeView.setImageURI(uri);
     }
+
 }
