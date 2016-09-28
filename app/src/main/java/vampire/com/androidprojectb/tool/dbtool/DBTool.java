@@ -70,16 +70,17 @@ public class DBTool {
     public void insertFavorite(final DBFavorite dbFavorite) {
         threadPool.execute(new Runnable() {
             private List<DBFavorite> dbFavorites;
+
             @Override
             public void run() {
                 DaoMaster daoMaster = new DaoMaster(getWritableDatabase());
                 daoSession = daoMaster.newSession();
                 dbFavoriteDao = daoSession.getDBFavoriteDao();
-                if (dbFavorite.getUrl()!=null){
+                if (dbFavorite.getUrl() != null) {
                     dbFavorites = dbFavoriteDao.queryBuilder()
                             .where(DBFavoriteDao.Properties.Url.eq(dbFavorite.getUrl()))
                             .build().list();
-                }else {
+                } else {
                     dbFavorites = dbFavoriteDao.queryBuilder()
                             .where(DBFavoriteDao.Properties.Title.eq(dbFavorite.getTitle()))
                             .build().list();
@@ -88,7 +89,7 @@ public class DBTool {
                 if (dbFavorites.size() == 0) {
                     Log.d("DBTool", "存");
                     dbFavoriteDao.insert(dbFavorite);
-                }else {
+                } else {
                     Log.d("DBTool", "数据已存在");
                 }
             }
@@ -178,7 +179,6 @@ public class DBTool {
                 if (type == null) {
                     Log.d("DBTool", "null");
                     dbFavorites = queryFavorite();
-
                 } else {
                     Log.d("DBTool", "!null");
                     dbFavorites = queryFavorite(type);
@@ -189,6 +189,19 @@ public class DBTool {
                 .subscribeOn(Schedulers.io())
                 .subscribe(action1);
 
+    }
+
+    // 根据title查数据库
+    public void getFavoriteByTitle(final String type, final String title, Action1<List<DBFavorite>> action1) {
+        Observable.create(new Observable.OnSubscribe<List<DBFavorite>>() {
+            @Override
+            public void call(Subscriber<? super List<DBFavorite>> subscriber) {
+                List<DBFavorite> dbFavorites = queryFavorite(type, title);
+                subscriber.onNext(dbFavorites);
+            }
+        }).observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(action1);
     }
 
     // 查询
@@ -214,11 +227,12 @@ public class DBTool {
         return dbFavorites;
     }
 
-    private List<DBFavorite> queryFavorite(String type ,String title){
-        List<DBFavorite>dbFavorites = queryFavorite(type);
+    // 查文字内容
+    private List<DBFavorite> queryFavorite(String type, String title) {
+        List<DBFavorite> dbFavorites = queryFavorite(type);
         List<DBFavorite> result = new ArrayList<>();
         for (DBFavorite dbFavorite : dbFavorites) {
-            if (dbFavorite.getTitle().equals(title)){
+            if (dbFavorite.getTitle().equals(title)) {
                 result.add(dbFavorite);
             }
         }

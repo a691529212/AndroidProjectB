@@ -3,20 +3,28 @@ package vampire.com.androidprojectb.fragment.recreation.fortunetelling;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
+import com.iflytek.cloud.SpeechConstant;
+import com.iflytek.cloud.SpeechSynthesizer;
 import com.romainpiel.shimmer.Shimmer;
 import com.romainpiel.shimmer.ShimmerTextView;
+import com.yalantis.contextmenu.lib.ContextMenuDialogFragment;
+import com.yalantis.contextmenu.lib.interfaces.OnMenuItemClickListener;
 
 import java.util.Calendar;
 
 import kankan.wheel.widget.OnWheelChangedListener;
 import kankan.wheel.widget.WheelView;
+import vampire.com.androidprojectb.MainActivity;
 import vampire.com.androidprojectb.R;
 import vampire.com.androidprojectb.base.BaseFragment;
-import vampire.com.androidprojectb.tool.FormatCodeUtil;
+import vampire.com.androidprojectb.fragment.recreation.RecreationFragment;
+import vampire.com.androidprojectb.fragment.recreation.Title;
+import vampire.com.androidprojectb.tool.ContextMenu;
+import vampire.com.androidprojectb.tool.Speaker;
 import vampire.com.androidprojectb.tool.nettool.NetTool;
 import vampire.com.androidprojectb.tool.nettool.OnHttpCallBack;
+import vampire.com.androidprojectb.values.StringValues;
 import vampire.com.androidprojectb.values.UrlValues;
 
 /**
@@ -30,6 +38,10 @@ public class FortunetellingFragment extends BaseFragment {
     private Button birthdayBtn;
     private ShimmerTextView birRequestTv;
     private ShimmerTextView bitTitleTv;
+    private ContextMenuDialogFragment contextMenuDialogFragment;
+    private String voiceName = "vixm";
+    private SpeechSynthesizer synthesizer;
+    private Title title;
 
 
     @Override
@@ -39,6 +51,8 @@ public class FortunetellingFragment extends BaseFragment {
 
     @Override
     protected void initView() {
+
+
         yearView = bindView(R.id.year);
         monthView = bindView(R.id.month);
         dayView = bindView(R.id.day);
@@ -103,6 +117,8 @@ public class FortunetellingFragment extends BaseFragment {
                                 Shimmer shimmerR = new Shimmer();
                                 shimmerR.setDuration(3000).setStartDelay(300).setDirection(Shimmer.ANIMATION_DIRECTION_RTL);
                                 shimmerR.start(bitTitleTv);
+
+                                title.setSpeak(bitTitleTv.getText().toString() + birRequestTv.getText().toString());
                             }
 
                             @Override
@@ -112,6 +128,10 @@ public class FortunetellingFragment extends BaseFragment {
                         });
             }
         });
+
+        final MainActivity mainActivity = (MainActivity) getActivity();
+        title = new Title(getContext(), bitTitleTv.getText().toString() + birRequestTv.getText().toString());
+        title.setTitle(mainActivity);
 
     }
 
@@ -126,5 +146,10 @@ public class FortunetellingFragment extends BaseFragment {
         dayView.setCurrentItem(curDay, true);
     }
 
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        MainActivity mainActivity = (MainActivity) getActivity();
+        mainActivity.getMainTitle().setVisibility(View.GONE);
+    }
 }

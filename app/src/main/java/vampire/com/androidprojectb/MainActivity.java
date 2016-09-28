@@ -5,10 +5,15 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
+
+import com.romainpiel.shimmer.Shimmer;
+import com.romainpiel.shimmer.ShimmerTextView;
 
 import vampire.com.androidprojectb.base.BaseActivity;
 import vampire.com.androidprojectb.fragment.news.NewsFragment;
@@ -28,6 +33,10 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     private RadioGroup radioGroup;
     private FragmentManager manager;
     private NewsFragment newsFragment;
+    private RelativeLayout title;
+    private Button back;
+    private Button down;
+    private ShimmerTextView titleTv;
 
 
     @Override
@@ -35,8 +44,32 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         return R.layout.activity_main;
     }
 
+    public Button getBack() {
+        return back;
+    }
+
+    public Button getDown() {
+        return down;
+    }
+
+    public RelativeLayout getMainTitle() {
+        return title;
+    }
+
+    public ShimmerTextView getTitleTv() {
+        return titleTv;
+    }
+
     @Override
     protected void initView() {
+
+        title = bindView(R.id.main_linear_layout);
+        back = bindView(R.id.main_go_back);
+        down = bindView(R.id.main_go_down);
+        titleTv = bindView(R.id.tv_main_title);
+        Shimmer shimmer = new Shimmer();
+        shimmer.setDuration(6000).setStartDelay(300).setDirection(Shimmer.ANIMATION_DIRECTION_LTR);// left tp right
+        shimmer.start(titleTv);
 
         frameLayout = bindView(R.id.frame_layout_main);
 

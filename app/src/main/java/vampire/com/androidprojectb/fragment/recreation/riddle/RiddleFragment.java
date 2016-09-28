@@ -13,6 +13,8 @@ import vampire.com.androidprojectb.R;
 import vampire.com.androidprojectb.base.BaseFragment;
 import vampire.com.androidprojectb.fragment.recreation.RecreationFragment;
 import com.capricorn.TouchAble;
+
+import vampire.com.androidprojectb.fragment.recreation.Title;
 import vampire.com.androidprojectb.tool.nettool.NetTool;
 import vampire.com.androidprojectb.tool.nettool.OnHttpCallBack;
 import vampire.com.androidprojectb.values.UrlValues;
@@ -26,6 +28,7 @@ public class RiddleFragment extends BaseFragment {
     private ShimmerTextView requesrTV;
     private ArcMenu arcMenu;
     private static final int[] ICON = new int[]{R.mipmap.back, R.mipmap.request, R.mipmap.a8p, R.mipmap.next};
+    private Title title;
 
 
     @Override
@@ -59,6 +62,10 @@ public class RiddleFragment extends BaseFragment {
     protected void initData() {
         setArcMenu(arcMenu, ICON);
         getRiddle();
+        // 将标题栏显示
+        final MainActivity mainActivity = (MainActivity) getActivity();
+        title = new Title(getContext(), requesrTV.getText().toString() );
+        title.setTitle(mainActivity);
 
     }
 
@@ -69,6 +76,7 @@ public class RiddleFragment extends BaseFragment {
             public void onSuccess(RiddleBean response) {
                 riddleTV.setText(response.getNewslist().get(0).getQuest());
                 requesrTV.setText("答案: " + response.getNewslist().get(0).getResult());
+                title.setSpeak(riddleTV.getText().toString());
             }
 
             @Override
@@ -97,6 +105,9 @@ public class RiddleFragment extends BaseFragment {
                             break;
                         case 1:
                             requesrTV.setVisibility(View.VISIBLE);
+                            mainActivity = (MainActivity) getActivity();
+                            title.setSpeak(requesrTV.getText().toString());
+                            title.setTitle(mainActivity );
                             break;
                         case 3:
                             getRiddle();

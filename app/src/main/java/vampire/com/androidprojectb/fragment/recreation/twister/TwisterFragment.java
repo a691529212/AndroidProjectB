@@ -1,5 +1,6 @@
 package vampire.com.androidprojectb.fragment.recreation.twister;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -7,6 +8,7 @@ import com.capricorn.RayMenu;
 import com.romainpiel.shimmer.Shimmer;
 import com.romainpiel.shimmer.ShimmerTextView;
 
+import rx.functions.Action1;
 import vampire.com.androidprojectb.MainActivity;
 import vampire.com.androidprojectb.R;
 import vampire.com.androidprojectb.base.BaseFragment;
@@ -14,6 +16,9 @@ import vampire.com.androidprojectb.fragment.recreation.RecreationFragment;
 
 import com.capricorn.TouchAble;
 
+import java.util.List;
+
+import vampire.com.androidprojectb.fragment.recreation.Title;
 import vampire.com.androidprojectb.tool.dbtool.DBFavorite;
 import vampire.com.androidprojectb.tool.dbtool.DBTool;
 import vampire.com.androidprojectb.tool.nettool.NetTool;
@@ -28,6 +33,7 @@ public class TwisterFragment extends BaseFragment {
     private ShimmerTextView twisterTV;
     private RayMenu rayMenu;
     private static final int[] ICONS = {R.mipmap.back, R.mipmap.a8p, R.mipmap.next};
+    private Title title;
 
     @Override
     protected int setLayout() {
@@ -48,6 +54,10 @@ public class TwisterFragment extends BaseFragment {
     protected void initData() {
         initRayMenu();
         getTwister();
+        // 将标题栏显示
+        final MainActivity mainActivity = (MainActivity) getActivity();
+        title = new Title(getContext(), twisterTV.getText().toString());
+        title.setTitle(mainActivity);
 
     }
 
@@ -56,7 +66,6 @@ public class TwisterFragment extends BaseFragment {
         for (int i = 0; i < itemCount; i++) {
             final ImageView item = new ImageView(getContext());
             item.setImageResource(ICONS[i]);
-
             final int position = i;
             rayMenu.addItem(item, new View.OnClickListener() {
 
@@ -69,7 +78,7 @@ public class TwisterFragment extends BaseFragment {
                             break;
                         case 1:
                             // 收藏
-                            DBFavorite dbFavorite =new DBFavorite();
+                            DBFavorite dbFavorite = new DBFavorite();
                             dbFavorite.setType("twister");
                             dbFavorite.setTitle(twisterTV.getText().toString());
                             DBTool.getInstance().insertFavorite(dbFavorite);
@@ -92,8 +101,22 @@ public class TwisterFragment extends BaseFragment {
                 String twister = response.getNewslist().get(0).getContent();
 
                 twister = twister.replaceAll("<br/>", "\n");
-//                DBTool.getInstance().getFavorite("twister");
+                DBTool.getInstance().getFavoriteByTitle("twister", twister, new Action1<List<DBFavorite>>() {
+
+
+                    @Override
+                    public void call(List<DBFavorite> dbFavorites) {
+                        if (dbFavorites.size() > 0) {
+                            Log.d(TAG, "收藏");
+                            ICONS[1] = R.mipmap.ac7;
+                        } else {
+                            ICONS[1] = R.mipmap.a8p;
+                            Log.d(TAG, "为收藏");
+                        }
+                    }
+                });
                 twisterTV.setText(twister);
+                title.setSpeak(twisterTV.getText().toString());
 
             }
 
