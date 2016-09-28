@@ -15,17 +15,17 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/fragment_news_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <Button
             android:id="@+id/fragment_news_button_tantan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/fragment_news_button_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/fragment_news_button_amap"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>

@@ -1,7 +1,6 @@
 package vampire.com.androidprojectb.fragment.news.tantan;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -59,7 +58,7 @@ public class TanTanAcitivity extends BaseActivity implements SwipeFlingAdapterVi
         flingContainer = (SwipeFlingAdapterView) findViewById(R.id.frame);
         adapter = new CardAdapter(this);
         flingContainer.init(this,adapter);
-//      flingContainer.setAdapter(adapter);
+        flingContainer.setAdapter(adapter);
 
 
     }
@@ -78,19 +77,12 @@ public class TanTanAcitivity extends BaseActivity implements SwipeFlingAdapterVi
                 right();
             }
         });
-        String url = UrlValues.GIRL + UrlValues.NUM + 50;
+        String url = UrlValues.HOT+ UrlValues.NUM + 50;
         NetTool.getInstance().startRequest(url, NewsReuseBean.class,
                 new OnHttpCallBack<NewsReuseBean>() {
                     @Override
                     public void onSuccess(final NewsReuseBean response) {
-                        Log.d("TanTanAcitivity", "sdfasdf");
-//                        flingContainer = new SwipeFlingAdapterView(TanTanAcitivity.this);
-//                        FrameLayout frameLayout = (FrameLayout) findViewById(R.id.tantan_fl);
                         adapter.setmCardList(response);
-//                        flingContainer.init(TanTanAcitivity.this, adapter);
-//                        frameLayout.addView(flingContainer, FrameLayout.LayoutParams.MATCH_PARENT,FrameLayout.LayoutParams.MATCH_PARENT);
-//                        flingContainer.invalidate();
-//                        flingContainer.setAdapter(adapter);
                         swipeFling(response);
                     }
 

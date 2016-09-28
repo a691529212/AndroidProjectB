@@ -59,4 +59,6 @@ dependencies {
     compile project(':loadingdrawable')
     compile project(':biuedittext')
     compile 'org.greenrobot:eventbus:3.0.0'
+    compile files('libs/AMap_Location_V2.9.0_20160906.jar')
+    compile files('libs/Amap_2DMap_V2.9.1_20160825.jar')
 }

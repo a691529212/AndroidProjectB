@@ -74,7 +74,7 @@ public class TabLayoutTitleActivity extends BaseActivity {
         listViewDel.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                MyApp.getListTitle().remove(position);
+            //MyApp.getListTitle().remove(position);
                 Toast.makeText(TabLayoutTitleActivity.this, "删除了" + MyApp.getListTitle().get(position), Toast.LENGTH_SHORT).show();
             }
         });
