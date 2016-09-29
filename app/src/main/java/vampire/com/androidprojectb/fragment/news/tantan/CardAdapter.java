@@ -1,7 +1,6 @@
 package vampire.com.androidprojectb.fragment.news.tantan;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,18 +35,17 @@ import vampire.com.androidprojectb.fragment.news.bean.NewsReuseBean;
  * 　　　　　　　　　┗┓┓┏━┳┓┏┛ + + + +
  * 　　　　　　　　　　┃┫┫　┃┫┫
  * 　　　　　　　　　　┗┻┛　┗┻┛+ + + +
- * <p/>
+ * <p>
  * Created by R on 16/9/21.
  */
 
 public class CardAdapter extends BaseAdapter {
     private Context mContext;
     private NewsReuseBean mCardList;
-    private  int i = 0;
+    private int i = 0;
 
     public void setmCardList(NewsReuseBean mCardList) {
         this.mCardList = mCardList;
-        Log.d("CardAdapter", "asdfasdf");
         notifyDataSetChanged();
     }
 
@@ -57,15 +55,13 @@ public class CardAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        Log.d("CardAdapter", "getcount" + mCardList);
-        return mCardList == null ? 0 : mCardList.getNewslist().size();
+        return mCardList == null ? 0 : Integer.MAX_VALUE;
     }
 
     @Override
     public Object getItem(int position) {
         i++;
-
-        return mCardList.getNewslist().get(i);
+        return mCardList.getNewslist().get(i%50);
     }
 
     @Override
@@ -75,7 +71,6 @@ public class CardAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Log.d("CardAdapter", "getview");
         ViewHolder holder = null;
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) mContext
@@ -86,9 +81,9 @@ public class CardAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
         Glide.with(mContext)
-                .load(mCardList.getNewslist().get(i).getPicUrl())
+                .load(mCardList.getNewslist().get(i%50).getPicUrl())
                 .into(holder.mCardImageView);
-        holder.mCardName.setText(mCardList.getNewslist().get(i).getTitle());
+        holder.mCardName.setText(mCardList.getNewslist().get(i%50).getTitle());
         return convertView;
     }
 
