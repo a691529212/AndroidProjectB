@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="400dp"
+        android:layout_marginTop="15dp"
+        android:layout_height="500dp">
+<com.facebook.drawee.view.SimpleDraweeView
+    android:id="@+id/drawee_head_url"
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    android:background="@mipmap/ic_launcher"/>
+        <TextView
+            android:id="@+id/text_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/drawee_head_url"
+            android:layout_marginTop="5dp"
+            android:text="123"/>
+        <TextView
+            android:id="@+id/text_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/drawee_head_url"
+            android:layout_below="@id/text_name"
+            android:layout_marginTop="18dp"
+            android:text="456"/>
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/drawee_answer_head"
+            android:layout_below="@id/drawee_head_url"
+            android:layout_marginTop="230dp"
+            android:background="@mipmap/ic_launcher"/>
+        <TextView
+            android:id="@+id/text_answer_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="270dp"
+            android:layout_toRightOf="@id/drawee_head_url"
+            android:text="123"/>
+        <TextView
+            android:id="@+id/text_answer_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/drawee_head_url"
+            android:layout_marginTop="310dp"
+            android:text="890"/>
+    </RelativeLayout>
+</RelativeLayout>

@@ -4,7 +4,7 @@
     xmlns:fresco="http://schemas.android.com/tools"
     android:layout_width="360dp"
     android:layout_height="300dp"
-    android:id="@+id/card_view_ask_down"
+
     android:layout_marginLeft="12dp"
     android:layout_marginTop="15dp"
     android:background="#FFFFFF"
@@ -36,7 +36,6 @@
             android:id="@+id/text_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="23dp"
             android:layout_toRightOf="@id/image_head_pic_url"
             android:text="123" />
 
@@ -60,7 +59,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/text_alias"
-            android:layout_marginTop="1dp"
             android:text="军事" />
 
         <TextView

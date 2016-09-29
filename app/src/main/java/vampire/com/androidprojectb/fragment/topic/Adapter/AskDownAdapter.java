@@ -2,6 +2,7 @@ package vampire.com.androidprojectb.fragment.topic.Adapter;
 
 import android.content.Context;
 import android.net.Uri;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,6 +45,11 @@ import vampire.com.androidprojectb.fragment.topic.bean.AskDownBean;
 public class AskDownAdapter extends BaseAdapter{
     private Context context;
     private AskDownBean askDownBean;
+   private CardViewAskDownOnClick downOnClick;
+
+    public void setDownOnClick(CardViewAskDownOnClick downOnClick) {
+        this.downOnClick = downOnClick;
+    }
 
     public AskDownAdapter(Context context) {
         this.context = context;
@@ -53,7 +59,9 @@ public class AskDownAdapter extends BaseAdapter{
         this.askDownBean = askDownBean;
         notifyDataSetChanged();
     }
-
+   public  interface  CardViewAskDownOnClick{
+       void  ItemOclick(int pos);
+   }
     @Override
     public int getCount() {
         return askDownBean!=null?askDownBean.getData().getExpertList().size():0;
@@ -70,7 +78,7 @@ public class AskDownAdapter extends BaseAdapter{
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    public View getView(final int i, View view, ViewGroup viewGroup) {
         ViewHolder viewHolder=null;
         LayoutInflater inflater=LayoutInflater.from(context);
         if (view==null){
@@ -97,6 +105,12 @@ public class AskDownAdapter extends BaseAdapter{
 
         Uri uri=Uri.parse(askDownBean.getData().getExpertList().get(i).getPicurl());
         viewHolder.simpleDraweeViewPicUrl.setImageURI(uri);
+        viewHolder.cardViewAskDown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                downOnClick.ItemOclick(i);
+            }
+        });
         return view;
     }
    public  class ViewHolder{
@@ -106,6 +120,7 @@ public class AskDownAdapter extends BaseAdapter{
        TextView textViewAlias;
        SimpleDraweeView simpleDraweeViewPicUrl;
        SimpleDraweeView simpleDraweeViewHeadViewPicUrl;
+       CardView cardViewAskDown;
        public  ViewHolder(View view){
            textViewTitle= (TextView) view.findViewById(R.id.text_title);
            textViewClassification= (TextView) view.findViewById(R.id.text_classification);
@@ -113,6 +128,7 @@ public class AskDownAdapter extends BaseAdapter{
            textViewAlias= (TextView) view.findViewById(R.id.text_alias);
            simpleDraweeViewPicUrl= (SimpleDraweeView) view.findViewById(R.id.image_pic_url);
            simpleDraweeViewHeadViewPicUrl= (SimpleDraweeView) view.findViewById(R.id.image_head_pic_url);
+           cardViewAskDown= (CardView) view.findViewById(R.id.card_view_ask_down);
        }
    }
 

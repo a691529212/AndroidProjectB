@@ -32,6 +32,7 @@ import vampire.com.androidprojectb.fragment.user.radio.RadioCommentActivity;
 import vampire.com.androidprojectb.fragment.user.radio.RadioGoldActivity;
 import vampire.com.androidprojectb.fragment.user.radio.RadioReadActivity;
 
+
 /**
  * Created by Vampire on 16/9/12.
  */
@@ -48,6 +49,9 @@ public class UserFragment extends BaseFragment implements View.OnClickListener, 
 
      private ImageView imageViewHead;
     private static int RESULT_LOAD_IMAGE = 1;
+    private MyUser myUser;
+    private Bitmap bitmap;
+
     @Override
     protected int setLayout() {
         return R.layout.fragment_user;
@@ -80,6 +84,7 @@ public class UserFragment extends BaseFragment implements View.OnClickListener, 
         btnFinish.setOnClickListener(this);
         group.setOnCheckedChangeListener(this);
         imageViewHead.setOnClickListener(this);
+
     }
 
 
@@ -109,19 +114,10 @@ public class UserFragment extends BaseFragment implements View.OnClickListener, 
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
             String picturePath = cursor.getString(columnIndex);
             cursor.close();
-            Bitmap bitmap = BitmapFactory.decodeFile(picturePath);
+            bitmap = BitmapFactory.decodeFile(picturePath);
             imageViewHead.setImageBitmap(bitmap);
             //获取user数据需要调动的方法
-            MyUser myUser = BmobUser.getCurrentUser(MyUser.class);
-            myUser.setIcon(bitmap);
-            Bitmap bitmap1 = myUser.getIcon();
-            CircleDrawable circleDrawable = new CircleDrawable(bitmap1);
-            imageViewHead.setImageDrawable(circleDrawable);
-            AlphaAnimation alphaAnimation = new AlphaAnimation(0, 1);
-            alphaAnimation.setDuration(1000);
-            imageViewHead.setAnimation(alphaAnimation);
-            alphaAnimation.start();
-            myUser.setIcon(bitmap1);
+            myUser = BmobUser.getCurrentUser(MyUser.class);
             //保存
             myUser.update(new UpdateListener() {
                 @Override
@@ -130,6 +126,16 @@ public class UserFragment extends BaseFragment implements View.OnClickListener, 
                         Log.d("UserFragment", "更新失败" + e.toString());
                     } else {
                         Log.d("UserFragment", "更新成功");
+
+                        myUser.setIcon(bitmap);
+                        Bitmap bitmap1 = myUser.getIcon();
+                        CircleDrawable circleDrawable = new CircleDrawable(bitmap1);
+                        imageViewHead.setImageDrawable(circleDrawable);
+                        AlphaAnimation alphaAnimation = new AlphaAnimation(0, 1);
+                        alphaAnimation.setDuration(1000);
+                        imageViewHead.setAnimation(alphaAnimation);
+                        alphaAnimation.start();
+                        myUser.setIcon(bitmap1);
                     }
                 }
             });
