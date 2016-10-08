@@ -83,6 +83,8 @@
         <activity android:name=".activity.AskUpSecondActivity"/>
         <activity android:name=".activity.AskDownSecondActivity"/>
 
+        <activity android:name=".activity.RegisterActivity"/>
+
     </application>
 
 </manifest>

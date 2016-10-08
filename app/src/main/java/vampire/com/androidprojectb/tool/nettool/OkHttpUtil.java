@@ -5,6 +5,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -118,10 +119,10 @@ public class OkHttpUtil implements NetInterface {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String str = response.body().string().trim();
-                Log.d("Vampire", "**************************");
 
-                Log.d("Vampire", "aaa" + str + "**");
+
                 if (str.length() == 160) {
+
                     File cacheDir = MyApp.getContext().getCacheDir();
                     if (!cacheDir.exists()) {
                         cacheDir.mkdir();
@@ -133,16 +134,19 @@ public class OkHttpUtil implements NetInterface {
                     FileOutputStream fileOutputStream = new FileOutputStream(text);
                     fileOutputStream.write(str.getBytes());
                 }
-                Log.d("Vampire", String.valueOf(str.length()));
 
 
-                final T result = mGson.fromJson(str, tClass);
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        callBack.onSuccess(result);
-                    }
-                });
+                try {
+                    final T result = mGson.fromJson(str, tClass);
+                    mHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            callBack.onSuccess(result);
+                        }
+                    });
+                } catch (Exception e) {
+                    Log.d("OkHttpUtil", "e:" + e);
+                }
 
 
             }

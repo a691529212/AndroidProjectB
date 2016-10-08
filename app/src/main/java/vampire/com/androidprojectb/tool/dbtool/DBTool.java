@@ -123,7 +123,7 @@ public class DBTool {
         });
     }
 
-    // 删一条
+    // 删一条(通过网址)
     public void delFavorite(final String url) {
         threadPool.execute(new Runnable() {
             @Override
@@ -134,6 +134,25 @@ public class DBTool {
                 DBFavorite dbFavorite = dbFavoriteDao.queryBuilder()
                         .where(DBFavoriteDao.Properties.Url.eq(url))
                         .build().unique();
+                if (dbFavorite != null) {
+                    dbFavoriteDao.deleteByKey(dbFavorite.getId());
+                }
+            }
+        });
+    }
+
+    // 删一条(通过title)
+    public void delFavoriteByTitle(final String title) {
+        threadPool.execute(new Runnable() {
+            @Override
+            public void run() {
+                DaoMaster daoMaster = new DaoMaster(getWritableDatabase());
+                daoSession = daoMaster.newSession();
+                dbFavoriteDao = daoSession.getDBFavoriteDao();
+                DBFavorite dbFavorite = dbFavoriteDao.queryBuilder()
+                        .where(DBFavoriteDao.Properties.Title.eq(title))
+                        .build()
+                        .unique();
                 if (dbFavorite != null) {
                     dbFavoriteDao.deleteByKey(dbFavorite.getId());
                 }
@@ -197,6 +216,7 @@ public class DBTool {
             @Override
             public void call(Subscriber<? super List<DBFavorite>> subscriber) {
                 List<DBFavorite> dbFavorites = queryFavorite(type, title);
+                Log.d("DBTool", "dbFavorites.size():" + dbFavorites.size());
                 subscriber.onNext(dbFavorites);
             }
         }).observeOn(AndroidSchedulers.mainThread())

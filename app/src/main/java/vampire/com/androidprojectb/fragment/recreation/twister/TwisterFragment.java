@@ -1,13 +1,27 @@
 package vampire.com.androidprojectb.fragment.recreation.twister;
 
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.os.AsyncTask;
+import android.text.Editable;
+import android.text.Layout;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.capricorn.RayLayout;
 import com.capricorn.RayMenu;
 import com.romainpiel.shimmer.Shimmer;
 import com.romainpiel.shimmer.ShimmerTextView;
 
+import app.dinus.com.loadingdrawable.render.LoadingDrawable;
 import rx.functions.Action1;
 import vampire.com.androidprojectb.MainActivity;
 import vampire.com.androidprojectb.R;
@@ -17,8 +31,10 @@ import vampire.com.androidprojectb.fragment.recreation.RecreationFragment;
 import com.capricorn.TouchAble;
 
 import java.util.List;
+import java.util.Random;
 
 import vampire.com.androidprojectb.fragment.recreation.Title;
+import vampire.com.androidprojectb.tool.MyTextView;
 import vampire.com.androidprojectb.tool.dbtool.DBFavorite;
 import vampire.com.androidprojectb.tool.dbtool.DBTool;
 import vampire.com.androidprojectb.tool.nettool.NetTool;
@@ -30,10 +46,16 @@ import vampire.com.androidprojectb.values.UrlValues;
  */
 public class TwisterFragment extends BaseFragment {
     private static final String TAG = "Vampire_TwisterFragment";
-    private ShimmerTextView twisterTV;
+    private MyTextView twisterTV;
     private RayMenu rayMenu;
-    private static final int[] ICONS = {R.mipmap.back, R.mipmap.a8p, R.mipmap.next};
+    private static int[] ICONS = {R.mipmap.back, R.mipmap.a8p, R.mipmap.next};
     private Title title;
+    private boolean isFavorite = false;
+    private RayLayout rayLayout;
+    private Shimmer shimmer;
+    private String twister;
+    private AlertDialog.Builder builder;
+
 
     @Override
     protected int setLayout() {
@@ -45,9 +67,11 @@ public class TwisterFragment extends BaseFragment {
         twisterTV = bindView(R.id.tv_twister);
         rayMenu = bindView(R.id.ray_menu);
         TouchAble.moveEvent(rayMenu, getContext());
-        Shimmer shimmer = new Shimmer();
+        shimmer = new Shimmer();
         shimmer.setDuration(5000).setStartDelay(1000).setRepeatCount(2).setDirection(Shimmer.ANIMATION_DIRECTION_LTR);
         shimmer.start(twisterTV);
+
+
     }
 
     @Override
@@ -58,10 +82,21 @@ public class TwisterFragment extends BaseFragment {
         final MainActivity mainActivity = (MainActivity) getActivity();
         title = new Title(getContext(), twisterTV.getText().toString());
         title.setTitle(mainActivity);
+        rayLayout = rayMenu.getmRayLayout();
+
+
+//        builder = new AlertDialog.Builder(getContext());
+//        View view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_view,null);
+//        builder.setView(view)
+//                .show();
 
     }
 
     private void initRayMenu() {
+        if (rayLayout != null) {
+            rayLayout.removeAllViews();
+        }
+
         final int itemCount = ICONS.length;
         for (int i = 0; i < itemCount; i++) {
             final ImageView item = new ImageView(getContext());
@@ -72,19 +107,28 @@ public class TwisterFragment extends BaseFragment {
                 @Override
                 public void onClick(View v) {
                     switch (position) {
+
                         case 0:
                             MainActivity mainActivity = (MainActivity) getActivity();
                             mainActivity.upDataFragment(new RecreationFragment());
                             break;
-                        case 1:
-                            // 收藏
-                            DBFavorite dbFavorite = new DBFavorite();
-                            dbFavorite.setType("twister");
-                            dbFavorite.setTitle(twisterTV.getText().toString());
-                            DBTool.getInstance().insertFavorite(dbFavorite);
 
-                            item.setImageResource(R.mipmap.ac7);
+                        case 1:
+                            if (isFavorite) {
+                                DBTool.getInstance().delFavoriteByTitle(twisterTV.getText().toString());
+                                item.setImageResource(R.mipmap.a8p);
+                                isFavorite = false;
+                            } else {
+                                // 收藏
+                                DBFavorite dbFavorite = new DBFavorite();
+                                dbFavorite.setType("twister");
+                                dbFavorite.setTitle(twister);
+                                DBTool.getInstance().insertFavorite(dbFavorite);
+                                item.setImageResource(R.mipmap.ac7);
+                                isFavorite = true;
+                            }
                             break;
+
                         case 2:
                             getTwister();
                             break;
@@ -94,29 +138,52 @@ public class TwisterFragment extends BaseFragment {
         }
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+//        twisterTV.getTextView().clearAnimation();
+    }
+
     private void getTwister() {
+
         NetTool.getInstance().startRequest(UrlValues.TONGUE_TWISTER + UrlValues.NUM + 1, TwisterBean.class, new OnHttpCallBack<TwisterBean>() {
+
             @Override
             public void onSuccess(TwisterBean response) {
-                String twister = response.getNewslist().get(0).getContent();
+//                AlertDialog alertDialog = builder.;
+//                alertDialog.dismiss();
+
+                twisterTV.setText("");
+                twister = response.getNewslist().get(0).getContent();
 
                 twister = twister.replaceAll("<br/>", "\n");
                 DBTool.getInstance().getFavoriteByTitle("twister", twister, new Action1<List<DBFavorite>>() {
 
-
                     @Override
                     public void call(List<DBFavorite> dbFavorites) {
                         if (dbFavorites.size() > 0) {
+                            ICONS = new int[]{R.mipmap.back, R.mipmap.ac7, R.mipmap.next};
+                            initRayMenu();
+                            isFavorite = true;
                             Log.d(TAG, "收藏");
-                            ICONS[1] = R.mipmap.ac7;
                         } else {
-                            ICONS[1] = R.mipmap.a8p;
-                            Log.d(TAG, "为收藏");
+                            ICONS = new int[]{R.mipmap.back, R.mipmap.a8p, R.mipmap.next};
+                            initRayMenu();
+                            isFavorite = false;
+                            Log.d(TAG, "未收藏");
                         }
                     }
                 });
-                twisterTV.setText(twister);
-                title.setSpeak(twisterTV.getText().toString());
+
+
+                String s = new String();
+                for (int i = 0; i < twister.length(); i++) {
+                    s = twister.substring(i,i+1);
+                    UpDateText upDateText = new UpDateText();
+                    upDateText.execute(s);
+                }
+
+                title.setSpeak(twister);
 
             }
 
@@ -125,7 +192,47 @@ public class TwisterFragment extends BaseFragment {
 
             }
         });
+
+        twisterTV.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+//                world = (String) s.subSequence(before,count);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
     }
 
+    private class UpDateText extends AsyncTask<String, String, String> {
+
+        @Override
+        protected String doInBackground(String... params) {
+
+                try {
+                    Thread.sleep(300);
+                    String s = params[0];
+                    return s;
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            twisterTV.setText(twisterTV.getText().toString()+s);
+            shimmer.setDuration(5000).setStartDelay(1000).setRepeatCount(2).setDirection(Shimmer.ANIMATION_DIRECTION_LTR);
+            shimmer.start(twisterTV);
+        }
+    }
 
 }

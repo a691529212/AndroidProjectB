@@ -67,7 +67,7 @@ public class EnterActivity extends BaseActivity implements View.OnClickListener 
     public void onClick(final View view) {
         switch (view.getId()) {
             case R.id.text_register:
-                Intent intent = new Intent(this, RegisterActivity.class);
+                Intent intent = new Intent(this,RegisterActivity.class);
                 startActivity(intent);
 
                 break;

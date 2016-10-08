@@ -52,6 +52,10 @@ public class ArcMenu extends RelativeLayout {
     private boolean flag = true;
     private ViewGroup controlLayout;
 
+    public ArcLayout getmArcLayout() {
+        return mArcLayout;
+    }
+
     public ArcMenu(Context context) {
         super(context);
         init(context);
