@@ -71,6 +71,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 String etname = editTextAccount.getText().toString();
                 myUser.setUsername(etname);
                 myUser.setPassword(etpassword);
+
                 myUser.signUp(new SaveListener<BmobUser>() {
                     @Override
                     public void done(BmobUser bmobUser, BmobException e) {
@@ -78,16 +79,16 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                             Toast.makeText(RegisterActivity.this, "注册成功", Toast.LENGTH_SHORT).show();
                             finish();
                         } else {
-                            Toast.makeText(RegisterActivity.this, "注册失败", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivity.this, "注册失败:"+e.toString(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
 
-                if (myUser != null) {
-                    Toast.makeText(this, "已经注册过了", Toast.LENGTH_SHORT).show();
-                } else {
-
-                }
+//                if (myUser != null) {
+//                    Toast.makeText(this, "已经注册过了", Toast.LENGTH_SHORT).show();
+//                } else {
+//
+//                }
 
                 break;
         }

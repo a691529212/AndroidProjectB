@@ -19,6 +19,10 @@ import android.widget.RelativeLayout;
 public class RayMenu extends RelativeLayout {
 	private RayLayout mRayLayout;
 
+	public RayLayout getmRayLayout() {
+		return mRayLayout;
+	}
+
 	private ImageView mHintView;
 
 	public RayMenu(Context context) {

@@ -38,9 +38,6 @@ public class FortunetellingFragment extends BaseFragment {
     private Button birthdayBtn;
     private ShimmerTextView birRequestTv;
     private ShimmerTextView bitTitleTv;
-    private ContextMenuDialogFragment contextMenuDialogFragment;
-    private String voiceName = "vixm";
-    private SpeechSynthesizer synthesizer;
     private Title title;
 
 
@@ -95,9 +92,7 @@ public class FortunetellingFragment extends BaseFragment {
             public void onClick(View v) {
                 String url = UrlValues.BIRTHDAY + UrlValues.MOUTH + (monthView.getCurrentItem() + 1) + UrlValues.DAY + (dayView.getCurrentItem() + 1);
 
-                NetTool.getInstance().startRequest(
-                        url
-                        , DateBean.class, new OnHttpCallBack<DateBean>() {
+                NetTool.getInstance().startRequest(url, DateBean.class, new OnHttpCallBack<DateBean>() {
                             @Override
                             public void onSuccess(DateBean response) {
                                 bitTitleTv.setText(response.getNewslist().get(0).getTitle());
