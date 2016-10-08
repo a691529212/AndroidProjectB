@@ -38,19 +38,21 @@ import vampire.com.androidprojectb.R;
  * 　　　　　　　　　┗┓┓┏━┳┓┏┛ + + + +
  * 　　　　　　　　　　┃┫┫　┃┫┫
  * 　　　　　　　　　　┗┻┛　┗┻┛+ + + +
- *
- *
- * <p>
+ * <p/>
+ * <p/>
+ * <p/>
  * Created by R on 16/10/8.
  */
 public class WelcomeActivity extends AppCompatActivity
-        implements View.OnClickListener{
+        implements View.OnClickListener {
     private static final String TAG = "TAG_WelcomeActivity";
-    /** 图片的URL */
+    /**
+     * 图片的URL
+     */
     private static final String URL_IMAGE = "http://ww1.sinaimg.cn/large/610dc034jw1f5hpzuy3r7j20np0zkgpd.jpg";
 
     private TextView textView;
- //   private ImageView imageView;
+    //   private ImageView imageView;
 
     private Timer timer;
     private TimerTask timerTask;
@@ -68,9 +70,11 @@ public class WelcomeActivity extends AppCompatActivity
         }
     });
 
-    /** 跳转到主界面,并停止计时器/取消图片的下载/关闭自己 */
+    /**
+     * 跳转到主界面,并停止计时器/取消图片的下载/关闭自己
+     */
     private void startNextPage() {
-        startActivity(new Intent(this,MainActivity.class));
+        startActivity(new Intent(this, MainActivity.class));
         timer.cancel();
         downloadTask.cancel(true);
         finish();
@@ -78,13 +82,12 @@ public class WelcomeActivity extends AppCompatActivity
     }
 
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
         textView = (TextView) findViewById(R.id.welcome_text_time);
-     //   imageView = (ImageView) findViewById(R.id.welcome_image);
+        //   imageView = (ImageView) findViewById(R.id.welcome_image);
 
         textView.setOnClickListener(this);
         // 初始化计时器相关类的对象
@@ -100,14 +103,14 @@ public class WelcomeActivity extends AppCompatActivity
         downloadTask = new FileDownloadTask(new FileDownloadTask.OnDownloadListener() {
             @Override
             public void onFinish(Bitmap bmp) {
-       //         imageView.setImageBitmap(bmp);
+                //         imageView.setImageBitmap(bmp);
             }
         });
 
         // 开始下载图片
         downloadTask.execute(URL_IMAGE);
         // 开始执行计时器,每隔1000毫秒都会执行一下TimerTask对象里面的任务
-        timer.schedule(timerTask,0,1000);
+        timer.schedule(timerTask, 0, 1000);
 
     }
 
