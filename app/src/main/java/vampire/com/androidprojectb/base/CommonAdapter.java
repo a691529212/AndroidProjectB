@@ -9,7 +9,7 @@ import android.widget.BaseAdapter;
 import java.util.List;
 
 /**
- * Created by Vampire on 16/9/13.
+ * `Created by Vampire on 16/9/13.
  * 通用的Adapter
  */
 public abstract class CommonAdapter<T> extends BaseAdapter {

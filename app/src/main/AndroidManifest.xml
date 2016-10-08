@@ -52,15 +52,14 @@
         <meta-data android:name="com.amap.api.v2.apikey" android:value="047698ea5f2bece33aa7b5487eb2ec54">//开发者申请的key
 
         </meta-data>
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
+        <activity android:name=".MainActivity"/>
         <activity android:name=".activity.EnterActivity"/>
         <activity android:name=".activity.SettiingActivity"/>
         <activity android:name=".fragment.user.radio.RadioCollectActivity"/>

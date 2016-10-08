@@ -16,18 +16,25 @@
 
         <Button
             android:id="@+id/fragment_news_button_tantan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="美女图片" />
 
-        <Button
-            android:id="@+id/fragment_news_button_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/fragment_news_button_amap"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="地图" />
+
+        <Button
+            android:id="@+id/fragment_news_button_search"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="搜索" />
     </LinearLayout>
 
     <android.support.v4.view.ViewPager

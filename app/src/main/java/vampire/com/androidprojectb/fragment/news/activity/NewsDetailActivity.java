@@ -37,7 +37,6 @@ public class NewsDetailActivity extends BaseActivity {
     private WebView newsDetailWebView;
     public static final  String NEWS_DETAIL_KEY ="news_detail_key";
 
-
     @Override
     protected int setLayout() {
         return R.layout.activity_news_detail;
