@@ -60,5 +60,6 @@ dependencies {
 
     compile files('libs/AMap_Location_V2.9.0_20160906.jar')
     compile files('libs/Amap_2DMap_V2.9.1_20160825.jar')
-
+    compile 'com.roger.catloadinglibrary:catloadinglibrary:1.0.1'
+    compile 'com.ldoublem.thumbUplib:ThumbUplib:0.2'
 }

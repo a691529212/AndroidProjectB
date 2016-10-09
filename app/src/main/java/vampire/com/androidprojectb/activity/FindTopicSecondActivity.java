@@ -1,6 +1,7 @@
 package vampire.com.androidprojectb.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.ldoublem.thumbUplib.ThumbUpView;
 
 import vampire.com.androidprojectb.BuildConfig;
 import vampire.com.androidprojectb.R;
@@ -49,6 +51,7 @@ public class FindTopicSecondActivity extends BaseActivity {
     private TextView textViewDescription;
     private ImageView imageViewBack;
     private TextView textViewName;
+
     @Override
     protected int setLayout() {
         return R.layout.find_topic_second;
@@ -59,6 +62,8 @@ public class FindTopicSecondActivity extends BaseActivity {
         listViewFindTopic = bindView(R.id.find_topic_second_lv);
         imageViewBack=bindView(R.id.image_back);
         textViewName=bindView(R.id.text_name);
+
+
         View view = LayoutInflater.from(this).inflate(R.layout.find_topic_second_head,null);
         textViewAlias= (TextView) view.findViewById(R.id.text_alias);
         textViewDescription= (TextView) view.findViewById(R.id.text_description);
@@ -90,5 +95,7 @@ public class FindTopicSecondActivity extends BaseActivity {
 
             }
         });
+
+
     }
 }

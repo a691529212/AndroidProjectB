@@ -15,6 +15,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import java.util.ArrayList;
 import java.util.List;
 
+import vampire.com.androidprojectb.BuildConfig;
 import vampire.com.androidprojectb.R;
 import vampire.com.androidprojectb.fragment.topic.bean.FindTopicBean;
 
@@ -64,7 +65,7 @@ public class FindTopicRightAdapter extends BaseAdapter {
 
 
         int count = (listBeen!=null?listBeen.size():0);
-        Log.d("FindTopicRightAdapter", "count:" + count);
+//        Log.d("FindTopicRightAdapter", "count:" + count);
         return count;
     }
 
@@ -93,6 +94,7 @@ public class FindTopicRightAdapter extends BaseAdapter {
             viewHolder.textViewQuestionCounts.setText(listBeen.get(i).getQuestionCount()+"");
             viewHolder.textViewConcernCount.setText(listBeen.get(i).getConcernCount()+"");
             viewHolder.textViewName.setText(listBeen.get(i).getName());
+
             Uri uri=Uri.parse(listBeen.get(i).getHeadpicurl());
             viewHolder.draweeViewImage.setImageURI(uri);
 
