@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
         android:id="@+id/ll"
@@ -39,4 +41,14 @@
         android:layout_width="match_parent"
        android:layout_below="@id/ll"
         android:layout_height="wrap_content"></vampire.com.androidprojectb.tool.SeparateListView>
+    <com.ldoublem.thumbUplib.ThumbUpView
+        android:id="@+id/tpv"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:cracksColor="#33475f"
+        app:edgeColor="#9d55b8"
+        app:fillColor="#ea8010"
+        android:layout_marginTop="500dp"
+        android:layout_centerHorizontal="true"
+        app:unlikeType="1"/>
 </RelativeLayout>

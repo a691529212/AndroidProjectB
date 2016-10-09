@@ -1,10 +1,13 @@
 package vampire.com.androidprojectb.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.ldoublem.thumbUplib.ThumbUpView;
 
 import vampire.com.androidprojectb.R;
 import vampire.com.androidprojectb.base.BaseActivity;
@@ -51,6 +54,7 @@ public class AskUpSecondActivity extends BaseActivity implements View.OnClickLis
         textViewName = bindView(R.id.text_name);
         listViewUp = bindView(R.id.lv_ask_up);
         imageViewBack=bindView(R.id.image_back);
+
         secondAdapter = new AskUpSecondAdapter(this);
 
     }
@@ -74,6 +78,9 @@ public class AskUpSecondActivity extends BaseActivity implements View.OnClickLis
 
             }
         });
+
+
+
     }
 
     @Override

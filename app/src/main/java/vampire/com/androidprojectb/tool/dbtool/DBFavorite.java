@@ -79,4 +79,5 @@ public class DBFavorite {
     public void setType(String type) {
         this.type = type;
     }
+
 }

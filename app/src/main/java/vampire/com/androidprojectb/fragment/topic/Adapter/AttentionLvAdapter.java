@@ -1,17 +1,17 @@
 package vampire.com.androidprojectb.fragment.topic.Adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import vampire.com.androidprojectb.BuildConfig;
-import vampire.com.androidprojectb.R;
+import java.util.ArrayList;
+import java.util.List;
 
-import vampire.com.androidprojectb.fragment.topic.bean.FindTopicBean;
+import vampire.com.androidprojectb.R;
+import vampire.com.androidprojectb.tool.dbtool.DBFavorite;
 
 /**
  * code is far away from bug with the animal protecting
@@ -34,33 +34,27 @@ import vampire.com.androidprojectb.fragment.topic.bean.FindTopicBean;
  * 　　　┃┫┫　┃┫┫
  * 　　　┗┻┛　┗┻┛
  */
-public class FindTopicLeftAdapter extends BaseAdapter {
+public class AttentionLvAdapter extends BaseAdapter {
     private Context context;
-    private FindTopicBean lefttBean;
+    private List<DBFavorite> favorites;
 
-    private int pos;
-
-    public void setSetTextColor(int pos) {
-        this.pos = pos;
+    public void setFavorites(List<DBFavorite> favorites) {
+        this.favorites = favorites;
         notifyDataSetChanged();
     }
 
-    public FindTopicLeftAdapter(Context context) {
+    public AttentionLvAdapter(Context context) {
         this.context = context;
     }
 
-    public void setLefttBean(FindTopicBean lefttBean) {
-        this.lefttBean = lefttBean;
-
-        notifyDataSetChanged();
-    }
-
-
     @Override
     public int getCount() {
-        return lefttBean != null ? lefttBean.getData().size() : 0;
+        return favorites!=null?favorites.size():0;
     }
-
+   public  void  deletePos(int pos){
+       favorites.remove(pos);
+       notifyDataSetChanged();
+   }
     @Override
     public Object getItem(int i) {
         return null;
@@ -72,33 +66,29 @@ public class FindTopicLeftAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(final int i, View view, ViewGroup viewGroup) {
+    public View getView(int i, View view, ViewGroup viewGroup) {
         ViewHolder viewHolder = null;
         LayoutInflater inflater = LayoutInflater.from(context);
         if (view == null) {
-            view = inflater.inflate(R.layout.find_topic_left, null);
-            viewHolder = new ViewHolder(view);
+            view = inflater.inflate(R.layout.attention_collect, null);
+            viewHolder=new ViewHolder(view);
             view.setTag(viewHolder);
-        } else {
-            viewHolder = (ViewHolder) view.getTag();
-        }
-        if (i == pos) {
-            viewHolder.textViewleft.setTextColor(0xFFD21010);
-        } else {
-            viewHolder.textViewleft.setTextColor(0xf8080808);
-        }
+        }else {
+            viewHolder= (ViewHolder) view.getTag();
 
-        viewHolder.textViewleft.setText(lefttBean.getData().get(i).getName());
-        Log.d("FindTopicLeftAdapter", lefttBean.getData().get(i).getName());
-
+        }
+        viewHolder.textViewName.setText(favorites.get(i).getType());
+        viewHolder.textViewAlias.setText(favorites.get(i).getTitle());
         return view;
     }
 
-    private class ViewHolder {
-        private TextView textViewleft;
+    public class ViewHolder {
+        TextView textViewName;
+        TextView textViewAlias;
 
-        private ViewHolder(View view) {
-            textViewleft = (TextView) view.findViewById(R.id.find_text_left);
+        public ViewHolder(View view) {
+          textViewName= (TextView) view.findViewById(R.id.text_name);
+            textViewAlias= (TextView) view.findViewById(R.id.text_alias);
         }
     }
 }

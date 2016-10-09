@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 
+import com.roger.catloadinglibrary.CatLoadingView;
+
 import vampire.com.androidprojectb.R;
 import vampire.com.androidprojectb.activity.AskDownSecondActivity;
 import vampire.com.androidprojectb.activity.AskUpSecondActivity;
@@ -50,7 +52,7 @@ public class AskFragment extends BaseFragment {
     private View view;
     private GridLayoutManager manager;
     private AskRvUpAdapter upAdapter;
-
+    private CatLoadingView mViews;
     private int temp ;
     @Override
     protected int setLayout() {
@@ -60,6 +62,8 @@ public class AskFragment extends BaseFragment {
     @Override
     protected void initView() {
         listViewAsk = bindView(R.id.ask_listview);
+        mViews=new CatLoadingView();
+        mViews.show(getFragmentManager(),"");
         view = LayoutInflater.from(MyApp.getContext()).inflate(R.layout.ask_head_view,null);
         recyclerViewAskHead= (RecyclerView) view.findViewById(R.id.rv_ask_head);
 
@@ -98,6 +102,9 @@ public class AskFragment extends BaseFragment {
              @Override
              public void onSuccess(final AskUpBean response) {
                  upAdapter.setUpBean(response);
+                 mViews.dismiss();
+
+                 mViews.dismissAllowingStateLoss();
                  upAdapter.setOnItemOclickAsk(new AskRvUpAdapter.OnItemOclickAsk() {
                      @Override
                      public void ItemOnClick(int pos) {

@@ -1,6 +1,7 @@
 package vampire.com.androidprojectb.fragment.user;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -222,4 +223,7 @@ public class UserFragment extends BaseFragment implements View.OnClickListener, 
                 break;
         }
     }
+
+
+
 }

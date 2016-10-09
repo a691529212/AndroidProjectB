@@ -108,6 +108,8 @@ public class DBTool {
                 DaoMaster daoMaster = new DaoMaster(getWritableDatabase());
                 DaoSession daoSession = daoMaster.newSession();
                 DBFavoriteDao dbFavoriteDao = daoSession.getDBFavoriteDao();
+                //下面的
+
                 for (DBFavorite dbFavorite : dbFavorites) {
                     List<DBFavorite> dbFavorites = dbFavoriteDao.queryBuilder()
                             .where(DBFavoriteDao.Properties.Url.eq(dbFavorite.getUrl())).build().list();

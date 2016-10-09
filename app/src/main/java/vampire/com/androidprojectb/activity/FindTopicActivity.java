@@ -85,6 +85,7 @@ public class FindTopicActivity extends BaseActivity {
                         findTopicBean = response;
 
                         listBeen = new ArrayList<FindTopicBean.DataBean.ListBean>();
+                         Log.d("FindTopicActivity", "listBeen:" + listBeen.toString());
                         listBeen = findTopicBean.getData().get(0).getList();
 
                         rightAdapter.setListBeen(listBeen);
