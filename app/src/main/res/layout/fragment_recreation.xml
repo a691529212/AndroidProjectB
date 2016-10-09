@@ -4,26 +4,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
     <com.romainpiel.shimmer.ShimmerTextView
-        android:layout_marginTop="15dp"
-        android:textColor="#ddbd5ed2"
         android:id="@+id/tv_old_saying_first"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:layout_weight="3"
         android:gravity="center"
+        android:textColor="#ddbd5ed2"
         android:textSize="22sp" />
 
     <com.romainpiel.shimmer.ShimmerTextView
         android:id="@+id/tv_old_saying_name"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginBottom="6dp"
         android:layout_weight="1"
         android:gravity="center"
         android:text=""
         android:textColor="#ddbd5ed2"
-        android:textSize="16sp"
-        android:layout_marginBottom="6dp"/>
+        android:textSize="16sp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -35,9 +36,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:padding="5dp"
         android:layout_weight="1"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="5dp">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -46,16 +47,15 @@
             android:src="@drawable/select_riddle" />
 
         <com.romainpiel.shimmer.ShimmerTextView
-            android:textColor="#dd5da5dc"
-            app:reflectionColor="#dd6dd7d0"
             android:id="@+id/tv_riddle_menu"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="8"
             android:gravity="center"
             android:text="脑筋急转弯"
+            android:textColor="#dd5da5dc"
             android:textSize="23sp"
-            />
+            app:reflectionColor="#dd6dd7d0" />
 
     </LinearLayout>
 
@@ -69,9 +69,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:padding="5dp"
         android:layout_weight="1"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="5dp">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -103,8 +103,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:layout_weight="1"
-        android:padding="5dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="5dp">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -136,8 +136,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:layout_weight="1"
-        android:padding="5dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="5dp">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -169,8 +169,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:layout_weight="1"
-        android:padding="5dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="5dp">
 
         <ImageView
             android:layout_width="wrap_content"

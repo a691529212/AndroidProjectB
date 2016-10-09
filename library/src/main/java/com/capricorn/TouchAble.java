@@ -13,8 +13,8 @@ import android.widget.RelativeLayout;
 public class TouchAble {
     private static int lastX;
     private static int lastY;
-    private static int  startDownX;
-    private static int  startDownY;
+    private static int startDownX;
+    private static int startDownY;
     private static boolean isIntercept = false;
 
 
@@ -25,18 +25,15 @@ public class TouchAble {
         final int screenWidth = displayMetrics.widthPixels;
         final int screenHeight = displayMetrics.heightPixels;
 
-
         view.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 int action = event.getAction();
-        Log.d("Sysout", "action:" + action);
                 switch (action) {
                     case MotionEvent.ACTION_DOWN:
                         // 获取相对屏幕位置(不是界面)
                         startDownX = lastX = (int) event.getRawX();
                         startDownY = lastY = (int) event.getRawY();
-
                         break;
                     /**
                      * layout(l,t,r,b)
@@ -94,7 +91,6 @@ public class TouchAble {
                         v.setLayoutParams(lpFeedback);
                         break;
                 }
-//                Log.d("TouchAble", "v.callOnClick():" + v.callOnClick());
                 return isIntercept;
             }
         });

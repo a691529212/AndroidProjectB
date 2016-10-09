@@ -75,7 +75,6 @@ public class RiddleFragment extends BaseFragment {
         final MainActivity mainActivity = (MainActivity) getActivity();
         title = new Title(getContext(), requesrTV.getText().toString());
         title.setTitle(mainActivity);
-
         arcLayout = arcMenu.getmArcLayout();
 
     }
@@ -94,17 +93,12 @@ public class RiddleFragment extends BaseFragment {
                         if (dbFavorites.size() > 0) {
                             iocn = new int[]{R.mipmap.back, R.mipmap.request, R.mipmap.ac7, R.mipmap.next};
                             setArcMenu(arcMenu, iocn);
-//                            iocn[2] = R.mipmap.ac7;
-                            Log.d(TAG, "has");
                             isFavorite = true;
 
                         } else {
-//                            iocn[2] = R.mipmap.a8p;
-                            Log.d(TAG, "not");
                             iocn = new int[]{R.mipmap.back, R.mipmap.request, R.mipmap.a8p, R.mipmap.next};
                             isFavorite = false;
                             setArcMenu(arcMenu, iocn);
-
                         }
                     }
                 });
@@ -119,15 +113,13 @@ public class RiddleFragment extends BaseFragment {
 
     private void setArcMenu(final ArcMenu arcMenu, int[] icons) {
         final int itemCount = icons.length;
-        if (arcLayout!=null){
+        if (arcLayout != null) {
             arcLayout.removeAllViews();
         }
         for (int i = 0; i < itemCount; i++) {
             ImageView item = new ImageView(getContext());
             item.setImageResource(icons[i]);
-
             final int position = i;
-
             arcMenu.addItem(item, new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -144,20 +136,16 @@ public class RiddleFragment extends BaseFragment {
                             break;
                         case 2:
                             if (isFavorite) {
-                                Log.d(TAG, "isFavorite");
                                 DBTool.getInstance().delFavorite(requesrTV.getText().toString());
                                 iocn = new int[]{R.mipmap.back, R.mipmap.request, R.mipmap.a8p, R.mipmap.next};
                                 setArcMenu(arcMenu, iocn);
-
                                 isFavorite = false;
                             } else {
-                                Log.d(TAG, "NotFavorite");
                                 DBFavorite dbFavorite = new DBFavorite();
                                 dbFavorite.setType("riddle");
                                 dbFavorite.setTitle(riddleTV.getText().toString());
                                 dbFavorite.setUrl(requesrTV.getText().toString());
                                 DBTool.getInstance().insertFavorite(dbFavorite);
-
                                 iocn = new int[]{R.mipmap.back, R.mipmap.request, R.mipmap.ac7, R.mipmap.next};
                                 isFavorite = true;
                                 setArcMenu(arcMenu, iocn);
@@ -167,7 +155,6 @@ public class RiddleFragment extends BaseFragment {
                             getRiddle();
                             break;
                     }
-//                    Toast.makeText(MainActivity.this, "position:" + position, Toast.LENGTH_SHORT).show();
                 }
             });
         }

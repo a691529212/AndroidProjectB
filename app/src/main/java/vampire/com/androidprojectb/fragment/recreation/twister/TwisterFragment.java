@@ -84,12 +84,6 @@ public class TwisterFragment extends BaseFragment {
         title.setTitle(mainActivity);
         rayLayout = rayMenu.getmRayLayout();
 
-
-//        builder = new AlertDialog.Builder(getContext());
-//        View view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_view,null);
-//        builder.setView(view)
-//                .show();
-
     }
 
     private void initRayMenu() {
@@ -141,7 +135,6 @@ public class TwisterFragment extends BaseFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-//        twisterTV.getTextView().clearAnimation();
     }
 
     private void getTwister() {
@@ -150,8 +143,6 @@ public class TwisterFragment extends BaseFragment {
 
             @Override
             public void onSuccess(TwisterBean response) {
-//                AlertDialog alertDialog = builder.;
-//                alertDialog.dismiss();
 
                 twisterTV.setText("");
                 twister = response.getNewslist().get(0).getContent();
@@ -175,7 +166,7 @@ public class TwisterFragment extends BaseFragment {
                     }
                 });
 
-
+                //蹦字儿
                 String s = new String();
                 for (int i = 0; i < twister.length(); i++) {
                     s = twister.substring(i,i+1);
@@ -193,6 +184,7 @@ public class TwisterFragment extends BaseFragment {
             }
         });
 
+        //没什么卵用
         twisterTV.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

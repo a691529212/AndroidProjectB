@@ -54,16 +54,14 @@ import vampire.com.androidprojectb.base.MyApp;
 public class OkHttpUtil implements NetInterface {
     private OkHttpClient mClient;
     //这样定义的handler对象无论在哪里创建的 都是属于主线程的
-    private Handler mHandler =
-            new Handler(Looper.getMainLooper());
+    private Handler mHandler = new Handler(Looper.getMainLooper());
     private Gson mGson;
 
     public OkHttpUtil() {
         super();
         mGson = new Gson();
         //获取系统的sd卡
-        File path =
-                Environment.getExternalStorageDirectory();
+        File path = Environment.getExternalStorageDirectory();
         //初始化okhttp
         mClient = new OkHttpClient.Builder()
                 //设置缓存位置 以及缓存大小
@@ -76,7 +74,6 @@ public class OkHttpUtil implements NetInterface {
 
     @Override
     public <T> void startRequest(String url, final Class<T> tClass, final OnHttpCallBack<T> callBack) {
-        Log.d("OkHttpUtil", url);
         Request request;
         //有的请求需要加body
         RequestBody body = RequestBody.create(MediaType.parse("html/txt"), "data=AD9/fXPmdAPktxm8hlqlG2TsD4ZylgBFnC2Y9ruMOxU%3D");
@@ -88,21 +85,16 @@ public class OkHttpUtil implements NetInterface {
                     .addHeader("Content-Type", "text/html;charset=UTF-8")
                     .addHeader("Content-Length", "1779")
                     .addHeader("Connection", "keep-alive")
-
                     .addHeader("Vary", "Accept-Encoding")
                     .addHeader("Vary", "Accept-Encoding")
-
                     .build();
-            Log.d("OkHttpUtil", "in");
         } else {
-            Log.d("OkHttpUtil", "go");
             request = new Request
                     .Builder().url(url)
                     .addHeader("apikey", "35fe329001b3e54bfd917517f52fcbe0")
                     .build();
         }
 
-        Log.d("OkHttpUtil", url);
 
         mClient.newCall(request).enqueue(new Callback() {
             @Override
@@ -119,22 +111,6 @@ public class OkHttpUtil implements NetInterface {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String str = response.body().string().trim();
-
-
-                if (str.length() == 160) {
-
-                    File cacheDir = MyApp.getContext().getCacheDir();
-                    if (!cacheDir.exists()) {
-                        cacheDir.mkdir();
-                    }
-                    File text = new File(cacheDir, "ceshi.txt");
-                    if (!text.exists()) {
-                        text.createNewFile();
-                    }
-                    FileOutputStream fileOutputStream = new FileOutputStream(text);
-                    fileOutputStream.write(str.getBytes());
-                }
-
 
                 try {
                     final T result = mGson.fromJson(str, tClass);

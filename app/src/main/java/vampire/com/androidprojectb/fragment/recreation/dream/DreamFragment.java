@@ -67,6 +67,7 @@ public class DreamFragment extends BaseFragment {
     private final Uri uri = Uri.parse("http://img5.imgtn.bdimg.com/it/u=283959817,3530741872&fm=21&gp=0.jpg");
     private AbstractDraweeController draweeController_left;
     private AbstractDraweeController draweeController_right;
+    private List<String> strings;
 
 
     @Override
@@ -161,11 +162,17 @@ public class DreamFragment extends BaseFragment {
                             DBTool.getInstance().getFavorite("dream_search", new Action1<List<DBFavorite>>() {
                                 @Override
                                 public void call(List<DBFavorite> dbFavorites) {
-                                    List<String> strings = new ArrayList<String>();
+                                    strings = new ArrayList<String>();
                                     strings.add("历史搜索记录...");
                                     for (DBFavorite dbFavorite : dbFavorites) {
                                         strings.add(dbFavorite.getTitle());
                                     }
+                                    searchListView.setAdapter(new CommonAdapter<String>(strings, getContext(), R.layout.lv_dream_search) {
+                                        @Override
+                                        public void setData(String s, CommonViewHolder viewHolder) {
+                                            viewHolder.setText(R.id.tv_search_dream, s);
+                                        }
+                                    });
                                 }
                             });
                         }
@@ -182,7 +189,6 @@ public class DreamFragment extends BaseFragment {
                 .subscribe(new Action1<String>() {
                     @Override
                     public void call(final String s) {
-                        Log.d(TAG, "s.length():" + s.length());
                         if (s.length() == 0) {
                             searchListView.setVisibility(View.GONE);
                         }
@@ -220,10 +226,44 @@ public class DreamFragment extends BaseFragment {
 
         searchListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                titleTv.setText(newslistBeen.get(position).getTitle());
-                requestTv.setText(newslistBeen.get(position).getResult());
-                searchListView.setVisibility(View.GONE);
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+                if (newslistBeen != null) {
+                    titleTv.setText(newslistBeen.get(position).getTitle());
+                    requestTv.setText(newslistBeen.get(position).getResult());
+                    searchListView.setVisibility(View.GONE);
+                } else if (strings != null) {
+                    NetTool.getInstance().startRequest(UrlValues.DREAM + UrlValues.DREAM_WORD + FormatCodeUtil.codingFormat(strings.get(position)),
+                            DreamBean.class, new OnHttpCallBack<DreamBean>() {
+                                @Override
+                                public void onSuccess(DreamBean response) {
+                                    if (strings.get(position).length() == 0) {
+                                        return;
+                                    }
+                                    searchListView.setVisibility(View.VISIBLE);
+                                    if (response.getNewslist() != null) {
+                                        newslistBeen = response.getNewslist();
+                                    } else {
+                                        newslistBeen = new ArrayList<DreamBean.NewslistBean>();
+                                        DreamBean.NewslistBean newslistBean = new DreamBean.NewslistBean();
+                                        newslistBean.setTitle("暂无查询结果");
+                                        newslistBeen.add(newslistBean);
+                                    }
+                                    dreamEt.setText(strings.get(position));
+                                    searchListView.setAdapter(new CommonAdapter<DreamBean.NewslistBean>(newslistBeen, getContext(), R.layout.lv_dream_search) {
+                                        @Override
+                                        public void setData(DreamBean.NewslistBean newslistBean, CommonViewHolder viewHolder) {
+                                            viewHolder.setText(R.id.tv_search_dream, newslistBean.getTitle());
+                                        }
+                                    });
+                                }
+
+                                @Override
+                                public void onError(Throwable e) {
+
+                                }
+                            });
+                }
+
             }
         });
 

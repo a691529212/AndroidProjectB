@@ -52,7 +52,6 @@ public class WelcomeActivity extends AppCompatActivity
     private static final String URL_IMAGE = "http://ww1.sinaimg.cn/large/610dc034jw1f5hpzuy3r7j20np0zkgpd.jpg";
 
     private TextView textView;
-    //   private ImageView imageView;
 
     private Timer timer;
     private TimerTask timerTask;
@@ -81,14 +80,11 @@ public class WelcomeActivity extends AppCompatActivity
 
     }
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
         textView = (TextView) findViewById(R.id.welcome_text_time);
-        //   imageView = (ImageView) findViewById(R.id.welcome_image);
-
         textView.setOnClickListener(this);
         // 初始化计时器相关类的对象
         timer = new Timer();
@@ -103,7 +99,6 @@ public class WelcomeActivity extends AppCompatActivity
         downloadTask = new FileDownloadTask(new FileDownloadTask.OnDownloadListener() {
             @Override
             public void onFinish(Bitmap bmp) {
-                //         imageView.setImageBitmap(bmp);
             }
         });
 

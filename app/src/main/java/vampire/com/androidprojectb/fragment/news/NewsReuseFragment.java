@@ -58,10 +58,7 @@ public class NewsReuseFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-
         mNewsReuseListView = bindView(R.id.fragment_news_reuse_listview);
-
-
     }
 
     @Override
@@ -69,10 +66,8 @@ public class NewsReuseFragment extends BaseFragment {
         Bundle bundle = getArguments();
         if (bundle != null) {
             final int position = bundle.getInt(NEWS_REUSE_BUNDLE_KEY);
-            String title =   MyApp.getListTitle().get(position);
-            url =  MyApp.getHasMapTitle().get(title)+ UrlValues.NUM + 50;
-            Log.d("NewsReuseFragment---", url);
-            //  url = urls[position] + UrlValues.NUM + 20;
+            String title = MyApp.getListTitle().get(position);
+            url = MyApp.getHasMapTitle().get(title) + UrlValues.NUM + 50;
             NetTool.getInstance().startRequest(url, NewsReuseBean.class,
                     new OnHttpCallBack<NewsReuseBean>() {
                         @Override
@@ -91,17 +86,14 @@ public class NewsReuseFragment extends BaseFragment {
                                 }
                             });
                         }
-
                         @Override
                         public void onError(Throwable e) {
 
                         }
                     });
-
         }
 
     }
-
 
     public static NewsReuseFragment newInstance(int position) {
         Bundle bundle = new Bundle();

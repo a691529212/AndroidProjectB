@@ -29,7 +29,6 @@ import vampire.com.androidprojectb.values.UrlValues;
  * Created by Vampire on 16/9/12.
  */
 public class RecreationFragment extends BaseFragment implements View.OnClickListener {
-    private static final String TAG = "Vampire_RecreationFragment";
     private ShimmerTextView oldSaying;
     private ShimmerTextView name;
     private LinearLayout riddleLayout;
@@ -100,9 +99,8 @@ public class RecreationFragment extends BaseFragment implements View.OnClickList
             public void onSuccess(OldSayingBean response) {
                 loadingDrawable.stop();
                 oldSaying.setBackground(null);
-
-                if (response.getNewslist().get(0).getContent().length() > 60) {
-                    oldSaying.setTextSize(15);
+                if (response.getNewslist().get(0).getContent().length() > 50) {
+                    oldSaying.setTextSize(13);
                 }
                 oldSaying.setText(response.getNewslist().get(0).getContent());
                 name.setText(name.getText() + response.getNewslist().get(0).getMrname());
