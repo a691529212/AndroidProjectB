@@ -53,6 +53,7 @@ public class UserFragment extends BaseFragment implements View.OnClickListener, 
     private MyUser myUser;
     private Bitmap bitmap;
 
+
     @Override
     protected int setLayout() {
         return R.layout.fragment_user;

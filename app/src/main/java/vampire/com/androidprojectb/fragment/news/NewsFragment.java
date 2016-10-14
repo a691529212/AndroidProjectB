@@ -1,10 +1,14 @@
 package vampire.com.androidprojectb.fragment.news;
 
+import android.app.Notification;
+import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.AdapterView;
+
+import java.util.List;
 
 import vampire.com.androidprojectb.R;
 import vampire.com.androidprojectb.base.BaseFragment;
@@ -23,6 +27,7 @@ public class NewsFragment extends BaseFragment implements View.OnClickListener, 
     private TabLayout mNewsTabLayout;
     private ViewPager mNewsViewPager;
     private NewsAdapter  newsAdapter;
+
 
 
     @Override

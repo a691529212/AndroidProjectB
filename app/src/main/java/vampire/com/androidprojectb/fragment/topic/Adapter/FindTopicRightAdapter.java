@@ -64,9 +64,9 @@ public class FindTopicRightAdapter extends BaseAdapter {
 
 
 
-        int count = (listBeen!=null?listBeen.size():0);
+//        int count = (listBeen!=null?listBeen.size():0);
 //        Log.d("FindTopicRightAdapter", "count:" + count);
-        return count;
+        return listBeen!=null?listBeen.size():0;
     }
 
     @Override
